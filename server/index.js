@@ -10,7 +10,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const CONNECTION_URL = 'mongodb+srv://<username>:<password>@capstonedatabase.j8gktwu.mongodb.net/';
+const CONNECTION_URL = 'mongodb+srv://ccbj_capstone:ccbj_capstone123@capstonedatabase.j8gktwu.mongodb.net/';
 const PORT = process.env.PORT || 8080;
 
 mongoose.connect(CONNECTION_URL)

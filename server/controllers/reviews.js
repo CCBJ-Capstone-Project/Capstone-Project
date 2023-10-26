@@ -38,8 +38,8 @@ export const createReview = async (req, res) => {
 
 export const updateReview = async (req, res) => {
   try {
-    // Get variables that can be changed
     const id = req.params.id;
+    // Get variables that can be changed
     const { title, message, tags } = req.body;
 
     const query = { _id: id };

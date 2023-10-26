@@ -38,8 +38,8 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    // Get variables that can be changed
     const id = req.params.id;
+    // Get variables that can be changed
     const { username, password } = req.body;
 
     const query = { _id: id };
