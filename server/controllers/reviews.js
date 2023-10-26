@@ -3,24 +3,25 @@ import ReviewMessage from "../models/reviewModel.js";
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await ReviewMessage.find();
-    console.log(reviews);
+    // console.log(reviews);
     res.send(reviews);
   } catch (error) {
     res.send(error.message);
   }
 }
 
-export const getReviewById = (req, res, next) => {
+export const getReviewById = async (req, res) => {
   try {
     // Pull id we are looking for from url
-    const { id } = req.params;
+    const id = req.params.id;
+    const query = { _id: id };
 
     // Find review within reviews database that has that unique ID
-    const review = reviews.find((review) => review.id === id)
+    const review = await ReviewMessage.find(query);
 
     res.send(review)
   } catch (error) {
-    next(error);
+    res.send(error.message);
   }
 }
 
@@ -31,41 +32,41 @@ export const createReview = async (req, res) => {
     await newReview.save()
     res.send(newReview);
   } catch (error) {
-    res.send(error);
+    res.send(error.message);
   }
 }
 
-export const updateReview = (req, res, next) => {
+export const updateReview = async (req, res) => {
   try {
     // Get variables that can be changed
-    const { title, message } = req.body;
+    const id = req.params.id;
+    const { title, message, tags } = req.body;
 
-    const { id } = req.params;
-    const review = reviews.find((review) => review.id===id);
+    const query = { _id: id };
 
-    // Check to see which variable the review wants to update
-    if(title){
-      review.title = title;
-    }
-    if(message){
-      review.message = message;
-    }
+    const result = await ReviewMessage.updateOne(query,{
+      $set: {
+        title: title,
+        message: message,
+        tags: tags
+      }
+    });
 
-    res.send(`Updating review with id: ${id}`)
+    res.send(`Updated Reviews: ${result.modifiedCount} ID: ${id}`);
   } catch (error) {
-    next(error);
+    res.send(error.message);
   }
 }
 
-export const deleteReview = (req, res, next) => {
+export const deleteReview = async (req, res) => {
   try {
-    const { _id: id } = req.params;
+    const reviewId = req.params.id;
+    const query = { _id: reviewId };
 
-    // Keep all reviews that do not have the selected id
-    reviews = reviews.filter((review) => review.id !== id);
+    const result = await ReviewMessage.deleteOne(query);
 
-    res.send(`Deleted review with id: ${id}`);
+    res.send(`Reviews Deleted: ${result.deletedCount} ID: ${reviewId}`);
   } catch (error) {
-    next(error)
+    res.send(error.message);
   }
 }
