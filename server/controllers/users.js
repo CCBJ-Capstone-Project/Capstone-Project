@@ -22,12 +22,14 @@ export const getUserById = async (req, res) => {
   try {
     // Pull id we are looking for from url
     const id = req.params.id;
+    const reviewId = req.body.posts;
     const query = { _id: id };
 
     // Find User within Users database that has that unique ID
     const user = await UserInfo.find(query);
+    const userWithReviews = { ...user, reviewId };
 
-    res.send(user)
+    res.send(userWithReviews)
   } catch (error) {
     res.send(error.message);
   }
