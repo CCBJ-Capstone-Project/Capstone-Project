@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { v4 as uuid } from 'uuid';
+import { v4 as uuidv4, validate as uuidValidate } from "uuid"; // Create unique id for each user with uuid() function
 
 const reviewSchema = mongoose.Schema({
   title: String,
@@ -9,6 +9,10 @@ const reviewSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
+  },
+  _id: {
+    type: String,
+    default: uuidv4
   }
 })
 

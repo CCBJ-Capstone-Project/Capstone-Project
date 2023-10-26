@@ -1,28 +1,16 @@
-import { v4 as uuid } from 'uuid'; // Create unique id for each user with uuid() function
+import UserInfo from '../models/userModel.js';
 
-let users = [
-  {
-    username: 'tester1',
-    password: 'password1',
-    id: uuid(),
-  },
-  {
-    username: 'tester2',
-    password: 'password2',
-    id: uuid(),
-  },
-]
-
-export const getAllUsers = (req, res, next) => {
+export const getAllUsers = async (req, res) => {
   try {
-    // console.log(users);
+    const users = await UserInfo.find();
+    console.log(users);
     res.send(users);
   } catch (error) {
-    next(error);
+    res.send(error.message);
   }
 }
 
-export const getUserById = (req, res, next) => {
+export const getUserById = (req, res) => {
   try {
     // Pull id we are looking for from url
     const { id } = req.params;
@@ -32,19 +20,18 @@ export const getUserById = (req, res, next) => {
 
     res.send(foundUser)
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 }
 
-export const createUser = (req, res, next) => {
+export const createUser = async (req, res) => {
+  const user = req.body;
+  const newUser = new UserInfo(user);
   try {
-    const user = req.body;
-
-    // add new user to database with unique id as well
-    users.push({ ...user, id: uuid() });
-    res.send(`Username: ${user.username} Password: ${user.password} added to database`);
+    await newUser.save()
+    res.send(newUser);
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 }
 
@@ -70,9 +57,11 @@ export const updateUser = (req, res, next) => {
   }
 }
 
-export const deleteUser = (req, res, next) => {
+export const deleteUser = (req, res) => {
+  const {userId} = req.params;
+
   try {
-    const { id } = req.params;
+    const { _id: id } = req.params;
 
     // Keep all users that do not have the selected id
     users = users.filter((user) => user.id !== id);

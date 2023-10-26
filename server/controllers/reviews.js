@@ -1,24 +1,12 @@
-import { v4 as uuid } from 'uuid'; // Create unique id for each review with uuid() function
+import ReviewMessage from "../models/reviewModel.js";
 
-let reviews = [
-  {
-    title: '',
-    message: '',
-    creator: '',
-    tags: [''],
-    createdAt: {
-      type: Date,
-      default: new Date()
-    },
-    id: uuid(),
-  }
-]
-
-export const getAllReviews = (req, res, next) => {
+export const getAllReviews = async (req, res) => {
   try {
+    const reviews = await ReviewMessage.find();
+    console.log(reviews);
     res.send(reviews);
   } catch (error) {
-    next(error);
+    res.send(error.message);
   }
 }
 
@@ -36,15 +24,14 @@ export const getReviewById = (req, res, next) => {
   }
 }
 
-export const createReview = (req, res, next) => {
+export const createReview = async (req, res) => {
+  const review = req.body;
+  const newReview = new ReviewMessage(review);
   try {
-    const review = req.body;
-
-    // add new review to database with unique id as well
-    reviews.push({ ...review, id: uuid() });
-    res.send(`Review with message: ${review.message} by review: ${review.creator} added to database`);
+    await newReview.save()
+    res.send(newReview);
   } catch (error) {
-    next(error);
+    res.send(error);
   }
 }
 
@@ -72,7 +59,7 @@ export const updateReview = (req, res, next) => {
 
 export const deleteReview = (req, res, next) => {
   try {
-    const { id } = req.params;
+    const { _id: id } = req.params;
 
     // Keep all reviews that do not have the selected id
     reviews = reviews.filter((review) => review.id !== id);

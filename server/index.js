@@ -1,16 +1,24 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
 const app = express();
-const PORT = 8080;
 
 app.use(express.json());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(cors());
 
-app.listen(
-  PORT,
-  () => console.log(`Server running on http://localhost:${PORT}`)
-);
+const CONNECTION_URL = 'mongodb+srv://crmeyer23:Kikirex1!@capstonedatabase.j8gktwu.mongodb.net/';
+const PORT = process.env.PORT || 8080;
+
+mongoose.connect(CONNECTION_URL)
+  .then(() => app.listen(
+    PORT,
+    () => console.log(`Server running on http://localhost:${PORT}`)
+  ))
+  .catch((error) => console.log(error));
 
 app.get('/', (req, res, next) => {
   try {
