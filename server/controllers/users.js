@@ -11,7 +11,7 @@ const getUsersWithPosts = async (username) => {
 export const getAllUsers = async (req, res) => {
   try {
     const users = await UserInfo.find();
-    // console.log(users);
+    console.log(users);
     res.send(users);
   } catch (error) {
     res.send(error.message);
