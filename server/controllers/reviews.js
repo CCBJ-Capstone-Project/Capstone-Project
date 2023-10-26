@@ -1,8 +1,9 @@
 import ReviewMessage from "../models/reviewModel.js";
+import mongoose from "mongoose";
 
 export const getAllReviews = async (req, res) => {
   try {
-    const reviews = await ReviewMessage.find();
+    const reviews = await ReviewMessage.find().populate('author');
     // console.log(reviews);
     res.send(reviews);
   } catch (error) {
@@ -27,7 +28,10 @@ export const getReviewById = async (req, res) => {
 
 export const createReview = async (req, res) => {
   const review = req.body;
-  const newReview = new ReviewMessage(review);
+  const reviewId = new mongoose.Types.ObjectId();
+  const authorId = req.body.author;
+  const reviewWithIds = { ...review, reviewId, authorId };
+  const newReview = new ReviewMessage(reviewWithIds);
   try {
     await newReview.save()
     res.send(newReview);

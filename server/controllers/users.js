@@ -1,4 +1,12 @@
+import mongoose from 'mongoose';
 import UserInfo from '../models/userModel.js';
+
+const getUsersWithPosts = async (username) => {
+  return UserInfo.find({ username: username })
+    .populate('posts').exec((err, posts) => {
+      console.log("Populated User " + posts);
+    })
+}
 
 export const getAllUsers = async (req, res) => {
   try {
@@ -27,7 +35,9 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
   const user = req.body;
-  const newUser = new UserInfo(user);
+  const userId = new mongoose.Types.ObjectId();
+  const userWithId = { ...user, userId};
+  const newUser = new UserInfo(userWithId);
   try {
     await newUser.save()
     res.send(newUser);
