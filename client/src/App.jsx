@@ -7,9 +7,11 @@ import HomePage from './components/HomePage'
 import AllReviewsPage from './components/AllReviewsPage'
 import SingleReview from './components/SingleReviewPage';
 import AllUsersPage from './components/AllUsersPage';
+import Register from './components/RegisterPage'
 import './App.css'
 
 function App() {
+  const [currentform, setCurrentForm] = UseState['login']
   const [reviews, setReviews] = useState([]);
 
   async function displayReviews(){
