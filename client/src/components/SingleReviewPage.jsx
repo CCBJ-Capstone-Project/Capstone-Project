@@ -9,15 +9,16 @@ export default function SingleReview({ reviews }){
     return review._id == reviewId;
   });
 
-  async function removeReview(review){
+  // TODO: fix so webpage dynamically update the reviews list (right now it can be deleted, but need to refresh page)
+    /**
+     * For some reason it is removed from the API itself, but webpage receives an error
+     * --> Prevents dynamic update without refreshing webpage
+     */
+  async function removeReview(){
     try{
-      const result = await deleteReview(review._id);
-      if(result.success){
-        console.log('Review deleted successfully!');
-        nav('/reviews');
-      } else{
-        console.error('Failed to delete review...');
-      }
+      const result = await deleteReview(reviewId);
+      nav('/reviews');
+      reviews = reviews.filter(review => review._id !== reviewId);
     } catch(error){
       console.error(error);
     }
