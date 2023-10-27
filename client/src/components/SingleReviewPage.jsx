@@ -1,33 +1,35 @@
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate, useParams } from 'react-router-dom'
-import { deleteReview } from "../api";
+import { deleteReview, fetchSingleReview } from "../api/reviewsUtils.js";
 
 export default function SingleReview({ reviews }){
   const nav = useNavigate();
   const { reviewId } = useParams();
+
   const selectedReview = reviews.find((review) => {
     return review._id == reviewId;
   });
 
-  // TODO: fix so webpage dynamically update the reviews list (right now it can be deleted, but need to refresh page)
-    /**
-     * For some reason it is removed from the API itself, but webpage receives an error
-     * --> Prevents dynamic update without refreshing webpage
-     */
+  async function displayReview(){
+    const result = await fetchSingleReview(selectedReview._id);
+    console.log('Selected review info: ', result);
+    return result;
+  }
+
+  useEffect(() => {
+    displayReview();
+  }, []);
+
+  /// TODO: fix so webpage dynamically update the reviews list (right now it can be deleted, but need to refresh)
   async function removeReview(){
     try{
       const result = await deleteReview(reviewId);
       nav('/reviews');
-      reviews = reviews.filter(review => review._id !== reviewId);
+      return result;
     } catch(error){
       console.error(error);
     }
   }
-
-  console.log(selectedReview);
-
-  useEffect(() => {
-  }, [])
 
   return(
     <>

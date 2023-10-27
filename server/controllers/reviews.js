@@ -69,8 +69,10 @@ export const deleteReview = async (req, res) => {
 
     const result = await ReviewMessage.deleteOne(query);
 
-    res.send(`Reviews Deleted: ${result.deletedCount} ID: ${reviewId}`);
+    if(result.deletedCount === 1){
+      res.status(204).send();
+    }
   } catch (error) {
-    res.send(error.message);
+    console.error('Error while deleting review: ', error);
   }
 }

@@ -74,10 +74,12 @@ export const deleteUser = async (req, res) => {
     const userId = req.params.id;
     const query = { _id: userId };
 
-    const result = await UserInfo.deleteOne(query);
+    const result = await ReviewMessage.deleteOne(query);
 
-    res.send(`Users Deleted: ${result.deletedCount} ID: ${userId}`);
+    if(result.deletedCount === 1){
+      res.status(204).send();
+    }
   } catch (error) {
-    res.send(error.message);
+    console.error('Error while deleting user: ', error);
   }
 }
