@@ -8,6 +8,7 @@ import AllReviewsPage from './components/AllReviewsPage'
 import SingleReview from './components/SingleReviewPage';
 import AllUsersPage from './components/AllUsersPage';
 import NewReviewForm from './components/NewReviewForm'
+import UpdateReviewPage from './components/UpdateReviewPage'
 import Register from './components/RegisterPage'
 import './App.css'
 
@@ -35,6 +36,7 @@ function App() {
         {/* <Route path='/users/:userId' element={<SingleUser users={users}/>}/> */}
         <Route path='/reviews' element={<AllReviewsPage reviews={reviews} setReviews={setReviews}/>}/>
         <Route path='/reviews/:reviewId' element={<SingleReview reviews={reviews}/>}/>
+        <Route path='/edit-review-form/:reviewId' element={<UpdateReviewPage reviews={reviews}/>}/>
         <Route path='/new-review-form' element={<NewReviewForm reviews={reviews} setReviews={setReviews}/>}/>
       </Routes>
     </>

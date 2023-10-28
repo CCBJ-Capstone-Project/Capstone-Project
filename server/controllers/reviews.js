@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await ReviewMessage.find().populate('author');
-    console.log(reviews);
+    // console.log(reviews);
     res.send(reviews);
   } catch (error) {
     res.send(error.message);

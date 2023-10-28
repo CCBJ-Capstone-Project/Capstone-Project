@@ -15,11 +15,7 @@ export default function SingleReview({ reviews }){
     console.log('Selected review info: ', result);
     return result;
   }
-
-  useEffect(() => {
-    displayReview();
-  }, []);
-
+  
   /// TODO: fix so webpage dynamically update the reviews list (right now it can be deleted, but need to refresh)
   async function removeReview(){
     try{
@@ -30,12 +26,23 @@ export default function SingleReview({ reviews }){
       console.error(error);
     }
   }
-
+  
+  function goToEditForm(){
+    nav(`/edit-review-form/${reviewId}`);
+  }
+  
+    useEffect(() => {
+      displayReview();
+    }, []);
+  
   return(
     <>
       <h1>{selectedReview.title}</h1>
       <h1>{selectedReview.message}</h1>
-      <button onClick={removeReview}>Delete</button>
+      <div>
+        <button onClick={removeReview}>Delete</button>
+        <button onClick={goToEditForm}>Update</button>
+      </div>
     </>
   )
 }
