@@ -36,20 +36,57 @@ export const createReview = async (title, message) => {
   }
 }
 
-export const updateReview = async (id, message) => {
+export const updateReview = async (id, title, message) => {
   try {
-    const response = await fetch(`${BASE_URL}/reviews/${id}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ message })
-    });
+    // If no new title or message, just return with no changes
+    if(!title && !message){
+      return;
+    }
 
-    const result = response.json();
-    console.log('Result of PATCH request: ', result);
-    return result;
+    // If no new title is present only update message
+    if(!title){
+      const response = await fetch(`${BASE_URL}/reviews/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+          body: JSON.stringify({ message })
+      });
+      const result = response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // If no new message is present only update title
+    if(!message){
+      const response = await fetch(`${BASE_URL}/reviews/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+          body: JSON.stringify({ title })
+      });
+      const result = response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // Otherwise update both title and message
+    else{
+      const response = await fetch(`${BASE_URL}/reviews/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json"
+        },
+          body: JSON.stringify({ title, message })
+      });
+      const result = response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
   } catch (error) {
     console.error('Error occured updating review: ', error);
     return { success: false }
