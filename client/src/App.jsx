@@ -11,6 +11,7 @@ import NewReviewForm from './components/NewReviewForm'
 import UpdateReviewPage from './components/UpdateReviewPage'
 import Register from './components/RegisterPage'
 import './App.css'
+import './login.css'
 
 function App() {
   const [form, setForm] = useState('');
