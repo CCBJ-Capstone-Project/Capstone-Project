@@ -1,25 +1,26 @@
 import { useState,useEffect } from "react"
 
-const LoginPage = () => {
+export const LoginPage = (props) => {
   const [email, setEmail] = usestate('');
   const [pass, setPass] = useState('');
-
-  const handleSubmit = () => {
-    e.preventDefault();
-    console.log(email);
-  }
+   
+ const handleSubmit = () => {
+ e.preventDefault();
+ console.log(email);
+ }
 
   return(
-    <>
-    <form>
-      <label for="email">email</label>
-      <input type = "email" placeholder="youremail@gmail.com" id="email" name="email"/>
-      <label for="password">password</label>
-      <input type="password" placeholder="youremail@gmail.com" id="password" name="password"/>
+    <div className="auth-form-container">
+      <h2>Login</h2>
+    <form onSubmit= {handleSubmit}>
+    <label htmlFor="email">email</label>
+     <input value = {email} onchange={(e) => setEmail(e.target.value)}/>
+     <label htmlfor="password">password</label>
+     <input value={pass} onChange={(e) => setPass(e.target.value)}/>
+     <button type ="submit">Log In</button>
     </form>
-    <button>Don't have an account? Register here.</button>
-    </>
+    <button onClick={props.onFormSwitch}>Don't have an account? Register here.</button>
+    </div>
   )
 }
-
 export default LoginPage;
