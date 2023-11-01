@@ -1,3 +1,5 @@
+//testing
+
 export default function SearchBar() {
   return (
     <div>
