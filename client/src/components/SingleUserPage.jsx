@@ -22,7 +22,7 @@ export default function singleUserPage({users}){
     <>
     <h1>{singleUser.name}</h1>
     <div>
-        <button onClick={() => nav(`/login/${_id}`)}>If new user please go to log in page!
+        <button onClick={() => nav(`/login/`)}>If new user please go to log in page!
         </button>
     </div>
     </>
