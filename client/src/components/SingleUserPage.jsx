@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { showSingleUser } from "../api/usersUtils";
-import { userNagivate, useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 export default function singleUserPage({users}){
  const nav= useNavigate();
