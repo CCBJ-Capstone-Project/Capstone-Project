@@ -1,15 +1,14 @@
 import { useState,useEffect } from "react"
 
-export const Register = (props) => {
+const Register = (props) => {
 
   const [email, setEmail] = usestate('');
   const [pass, setPass] = useState('');
   const [name, setName] = useState('')
-   
- const handleSubmit = () => {
- e.preventDefault();
- console.log(email);
- }
+  const handleSubmit = () => {
+    e.preventDefault();
+    console.log(email);
+  }
 
   return(
     <div className="auth-form-container">
@@ -18,7 +17,7 @@ export const Register = (props) => {
       <label htmlFor="name">Full name</label>
       <input value={name}name="name"placeholder="full name"/>
       <label htmlFor="email">email</label>
-     
+
       <input value = {email} onchange={(e) => setEmail(e.target.value)}/>
       <label htmlfor="password">password</label>
       <input value={pass} onChange={(e) => setPass(e.target.value)}/>
@@ -28,3 +27,5 @@ export const Register = (props) => {
     </div>
   )
 }
+
+export default Register;
