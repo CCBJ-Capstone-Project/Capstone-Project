@@ -1,8 +1,8 @@
 import { useState,useEffect } from "react"
 
-export const Register = (props) => {
+export default function Register (props) {
 
-  const [email, setEmail] = usestate('');
+  const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [name, setName] = useState('')
    

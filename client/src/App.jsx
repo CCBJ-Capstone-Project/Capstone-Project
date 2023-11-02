@@ -10,15 +10,13 @@ import AllUsersPage from './components/AllUsersPage';
 import NewReviewForm from './components/NewReviewForm'
 import UpdateReviewPage from './components/UpdateReviewPage'
 import Register from './components/RegisterPage'
+import SingleUserPage from './components/SingleUserPage'
 import './App.css'
 
 function App() {
    const [form, setForm] = useState('');
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
-    const [currentform, setCurrentForm] = useState['login']
-   const toggleForm = (formName) => {
-    setCurrentForm(formname);
 
    async function getReviews(){
      const reviewsArr = await fetchReviews();
@@ -27,16 +25,16 @@ function App() {
 
    useEffect(() => {
      getReviews();
-   }, [])}
+   }, []);
   
   return (
     <>
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />}/> 
-        <Route path='/login' element={<LoginPage />}/>
+        {/* <Route path='/login' element={<LoginPage />}/> */}
         <Route path='/users' element={<AllUsersPage users={users} setUsers= {setUsers}/>}/>
-        { <Route path='/users/:userId' element={<SingleUser users={users}/>}/> }
+         <Route path='/users/:userId' element={<SingleUserPage users={users}/>}/> 
         <Route path='/reviews' element={<AllReviewsPage reviews={reviews} setReviews={setReviews}/>}/>
         <Route path='/reviews/:reviewId' element={<SingleReview reviews={reviews}/>}/>
         <Route path='/edit-review-form/:reviewId' element={<UpdateReviewPage reviews={reviews}/>}/>
@@ -44,6 +42,6 @@ function App() {
       </Routes>
     </>
   )
-}
+  }
 
 export default App

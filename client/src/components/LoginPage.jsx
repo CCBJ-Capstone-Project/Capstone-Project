@@ -1,7 +1,7 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 
-export const LoginPage = (props) => {
-  const [email, setEmail] = usestate('');
+export default function LoginPage(props) {
+  const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
    
  const handleSubmit = () => {
@@ -23,4 +23,4 @@ export const LoginPage = (props) => {
     </div>
   )
 }
-export default LoginPage;
+

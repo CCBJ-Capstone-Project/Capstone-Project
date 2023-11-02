@@ -20,7 +20,7 @@ export default function singleUserPage({users}){
  }, []);
  return(
     <>
-    <h1>{singleUser.name}</h1>
+    <h1>{singleUser.username}</h1>
     <div>
         <button onClick={() => nav(`/login/`)}>If new user please go to log in page!
         </button>
