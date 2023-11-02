@@ -13,21 +13,21 @@ import Register from './components/RegisterPage'
 import './App.css'
 
 function App() {
-  const [form, setForm] = useState('');
+   const [form, setForm] = useState('');
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
-   const [currentform, setCurrentForm] = UseState['login']
-  const toggleForm = (formName) => {
+    const [currentform, setCurrentForm] = useState['login']
+   const toggleForm = (formName) => {
     setCurrentForm(formname);
 
-  async function getReviews(){
-    const reviewsArr = await fetchReviews();
-    setReviews(reviewsArr);
-  }
+   async function getReviews(){
+     const reviewsArr = await fetchReviews();
+     setReviews(reviewsArr);
+   }
 
-  useEffect(() => {
-    getReviews();
-  }, [])
+   useEffect(() => {
+     getReviews();
+   }, [])}
   
   return (
     <>
