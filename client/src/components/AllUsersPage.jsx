@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { showAllUsers } from "../api/usersUtils";
 
-export default function AllUsersPage({users}){
+export default function AllUsersPage({users, setUsers}){
   const nav = useNavigate();
-  const [allUsers, setAllUsers] = useState([]);
 
   async function displayUsers(){
     const usersDisplay = await showAllUsers();
-    setAllUsers(usersDisplay);
+    setUsers(usersDisplay);
   }
 
 useEffect(() => {

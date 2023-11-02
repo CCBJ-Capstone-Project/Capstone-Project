@@ -8,6 +8,7 @@ export default function UpdateReviewPage({ reviews }){
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
 
+  // TODO: Navigate back to all reviews page after updating review
   async function editReview(){
     try {
       const result = await updateReview(reviewId, title, message);
