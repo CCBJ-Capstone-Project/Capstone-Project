@@ -10,7 +10,6 @@ export default function Navbar() {
       <Link to="/users">Users</Link>
       <Link to="/reviews">Reviews</Link>
       <Link to="/new-review-form">Create Review</Link>
-      <Link to= "/users/:userId">Single User</Link>
       <SearchBar />
     </div>
   );
