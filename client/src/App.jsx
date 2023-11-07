@@ -39,6 +39,7 @@ function App() {
         <Route path='/reviews/:reviewId' element={<SingleReview reviews={reviews}/>}/>
         <Route path='/edit-review-form/:reviewId' element={<UpdateReviewPage reviews={reviews}/>}/>
         <Route path='/new-review-form' element={<NewReviewForm reviews={reviews} setReviews={setReviews}/>}/>
+        <Route path= '/register' element={<Register/>}></Route>
       </Routes>
     </>
   )
