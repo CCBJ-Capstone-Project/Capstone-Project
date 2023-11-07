@@ -57,6 +57,7 @@ function App() {
           path="/new-review-form"
           element={<NewReviewForm reviews={reviews} setReviews={setReviews} />}
         />
+        <Route path="/register" element={<Register />}></Route>
       </Routes>
     </>
   );

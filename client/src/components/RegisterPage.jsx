@@ -6,7 +6,7 @@ export default function Register (props) {
   const [pass, setPass] = useState('');
   const [name, setName] = useState('')
    
- const handleSubmit = () => {
+ const handleSubmit = (e) => {
  e.preventDefault();
  console.log(email);
  }
@@ -15,16 +15,14 @@ export default function Register (props) {
     <div className="auth-form-container">
       <h2>Register</h2>
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Full name</label>
-      <input value={name}name="name"placeholder="full name"/>
-      <label htmlFor="email">email</label>
-     
-      <input value = {email} onchange={(e) => setEmail(e.target.value)}/>
-      <label htmlfor="password">password</label>
-      <input value={pass} onChange={(e) => setPass(e.target.value)}/>
-      <button type ="submit">Log In</button>
+    <label>email
+     <input type = "email" value = {email} onChange={(e) => setEmail(e.target.value)}/>
+     </label>
+     <label >password
+     <input type = "password" value={pass} onChange={(e) => setPass(e.target.value)}/>
+     </label>
+     <button type ="submit">Log In</button>
     </form>
-    <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Don't have an account? Register here.</button>
     </div>
   )
 }
