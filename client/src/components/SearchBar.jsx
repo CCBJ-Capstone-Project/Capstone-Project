@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { searchReviews } from '../api/reviewsUtils';
 
 function SearchBar() {
