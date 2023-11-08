@@ -12,11 +12,16 @@ import UpdateReviewPage from './components/UpdateReviewPage';
 import Register from './components/RegisterPage';
 import SingleUserPage from './components/SingleUserPage';
 import './App.css';
+import './login.css'
 
 function App() {
   const [form, setForm] = useState('');
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
+  const [currentform, setCurrentForm] = UseState['login']
+  const toggleForm = (formName) => {
+    setCurrentForm(formname);
+  }
 
   async function getReviews() {
     const reviewsArr = await fetchReviews();
