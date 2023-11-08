@@ -33,14 +33,15 @@ export const fetchSingleReview = async (id) => {
   return result;
 };
 
-export const createReview = async (title, message) => {
+export const createReview = async (title, message, author) => {
   try {
+    console.log('Author ID: ', author._id);
     const response = await fetch(`${BASE_URL}/reviews`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ title, message }),
+      body: JSON.stringify({ title, message, author }),
     });
     const result = await response.json();
 

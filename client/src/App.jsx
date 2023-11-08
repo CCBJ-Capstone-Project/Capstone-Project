@@ -27,10 +27,10 @@ function App() {
         <Route path="/register" element={<Register />}/>
         <Route path='/users' element={<AllUsersPage users={users} setUsers= {setUsers}/>}/>
         <Route path='/users/:userId' element={<SingleUserPage users={users}/>}/>
-        <Route path='/reviews' element={<AllReviewsPage reviews={reviews} setReviews={setReviews}/>}/>
-        <Route path='/reviews/:reviewId' element={<SingleReview reviews={reviews}/>}/>
+        <Route path='/reviews' element={<AllReviewsPage />}/>
+        <Route path='/reviews/:reviewId' element={<SingleReview />}/>
         <Route path='/edit-review-form/:reviewId' element={<UpdateReviewPage reviews={reviews}/>}/>
-        <Route path='/new-review-form' element={<NewReviewForm reviews={reviews} setReviews={setReviews}/>}/>
+        <Route path='/new-review-form/:userId' element={<NewReviewForm reviews={reviews} setReviews={setReviews} users={users}/>}/>
         <Route path='reviews/search/:searchTerm' />
       </Routes>
     </>

@@ -2,7 +2,8 @@ import { useState,useEffect } from "react"
 import { fetchReviews } from "../api/reviewsUtils";
 import Reviews from "./Reviews";
 
-export default function AllReviewsPage({ reviews, setReviews }){
+export default function AllReviewsPage(){
+  const [reviews, setReviews] = useState([]);
   async function displayReviews(){
     const reviewsArr = await fetchReviews();
     setReviews(reviewsArr);

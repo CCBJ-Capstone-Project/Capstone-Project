@@ -9,8 +9,6 @@ export default function SingleUserPage({users}){
    const singleUser = users.find((user) =>{
       return user._id == userId;
    })
-   console.log(singleUser, "Here is a break");
-   console.log(users, "here is break2");
 
    async function displaySingleUser(){
       const result = await showSingleUser(singleUser._id);
@@ -23,8 +21,9 @@ export default function SingleUserPage({users}){
    return(
       <>
       <h1>{singleUser.username}</h1>
+      <h3>Post Count: {singleUser.postCount}</h3>
       <div>
-         <button onClick={() => nav(`/login/`)}>If new user please go to log in page!
+         <button onClick={() => nav(`/new-review-form/${singleUser._id}`)}>Write Review
          </button>
       </div>
       </>
