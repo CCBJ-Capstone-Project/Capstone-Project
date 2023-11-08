@@ -8,7 +8,7 @@ export default function AllUsersPage({users, setUsers}){
   async function displayUsers(){
     const usersDisplay = await showAllUsers();
     setUsers(usersDisplay);
-    console.log(usersDisplay);
+    // console.log(usersDisplay);
   }
 
 useEffect(() => {

@@ -9,7 +9,6 @@ export default function Navbar() {
       <Link to="/login">Login</Link>
       <Link to="/users">Users</Link>
       <Link to="/reviews">Reviews</Link>
-      <Link to="/new-review-form">Create Review</Link>
       <SearchBar />
     </div>
   );
