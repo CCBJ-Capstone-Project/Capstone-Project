@@ -2,40 +2,38 @@ import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import { showAllUsers } from "../api/usersUtils";
 
-export default function AllUsersPage({users}){
+export default function AllUsersPage({users, setUsers}){
   const nav = useNavigate();
-  const [allUsers, setAllUsers] = useState([]);
 
   async function displayUsers(){
     const usersDisplay = await showAllUsers();
-    setAllUsers(usersDisplay);
+    setUsers(usersDisplay);
+    console.log(usersDisplay);
   }
 
 useEffect(() => {
   displayUsers();
 }, [])
+console.log(users);
 
-  return (
-    <>
-      <h1>All Users Page</h1>
-      <div>
-        {
-          users.map((user) => {
-            return(
-              <>
-                <div key={user._id} className="user-container">
-                  <h2>{user.username}</h2>
+const list = ({ _id, username}) => (
+  <div key={_id}>
+    <h2>{username}</h2>
+    <button
+      onClick={() => nav(`/users/${_id}`)}
+    >
+    See Details
+    </button>
+  </div>
+)
 
-                  <button key= {user.id}
-                  onClick={() => nav(`/users/${user._id}`)}>
-                    See User Details
-                  </button>
-                </div>
-              </>
-            )
-          })
-        }
-      </div>
-    </>
-  )
+console.log(users);
+return(
+  <>
+    <h1>All Users Page</h1>
+      {users.map((i) => {
+        return list(i)
+      })}
+  </>
+)
 }
