@@ -14,7 +14,6 @@ export default function AllUsersPage({users, setUsers}){
 useEffect(() => {
   displayUsers();
 }, [])
-console.log(users);
 
 const list = ({ _id, username}) => (
   <div key={_id}>
