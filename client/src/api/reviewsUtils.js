@@ -3,7 +3,6 @@ const BASE_URL = 'http://localhost:8080';
 export const fetchReviews = async () => {
   const response = await fetch(`${BASE_URL}/reviews`);
   const result = await response.json();
-
   // console.log(result);
   return result;
 };
@@ -69,7 +68,7 @@ export const updateReview = async (id, title, message) => {
         },
         body: JSON.stringify({ message }),
       });
-      const result = response.json();
+      const result = await response.json();
       console.log('Result of PATCH request: ', result);
       return result;
     }
@@ -83,7 +82,7 @@ export const updateReview = async (id, title, message) => {
         },
         body: JSON.stringify({ title }),
       });
-      const result = response.json();
+      const result = await response.json();
       console.log('Result of PATCH request: ', result);
       return result;
     }
@@ -97,7 +96,7 @@ export const updateReview = async (id, title, message) => {
         },
         body: JSON.stringify({ title, message }),
       });
-      const result = response.json();
+      const result = await response.json();
       console.log('Result of PATCH request: ', result);
       return result;
     }
