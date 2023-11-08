@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Register () {
   const nav = useNavigate();
   const [users, setUsers] = useState([]);
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const getUsers = async () => {
@@ -16,13 +16,13 @@ export default function Register () {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newUser = await createUser(email, password);
+      const newUser = await createUser(username, password);
       console.log(newUser);
 
       const newUsersArr = [...users, newUser];
       setUsers(newUsersArr);
 
-      setEmail('');
+      setUsername('');
       setPassword('');
       nav('/users');
     } catch (error) {
@@ -38,8 +38,8 @@ export default function Register () {
     <div className="auth-form-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <label>Email: 
-          <input type = "email" value = {email} onChange={(e) => setEmail(e.target.value)}/>
+        <label>Username: 
+          <input type = "text" value = {username} onChange={(e) => setUsername(e.target.value)}/>
         </label>
         <label >Password: 
           <input type = "password" value={password} onChange={(e) => setPassword(e.target.value)}/>

@@ -20,3 +20,58 @@
 h1{
   color: #f6099d;
 }
+
+.feed{
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 65px;
+  row-gap: 35px;
+}
+
+.review-container{
+  background-color: lightblue;      /* For seeing individual div purposes */
+  display: flexbox;
+  flex-direction: column;
+  margin: 10px 0;
+  width: 625px;
+  border: 5px solid green;
+  border-radius: 20px;
+  height: fit-content;
+}
+
+.review-header{
+  background-color: lightpink;      /* For seeing individual div purposes */
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-radius: 15px 15px 0 0;
+}
+.author{
+  background-color: lightseagreen;      /* For seeing individual div purposes */
+  margin-bottom: 0;
+}
+.review-title{
+  background-color: lightskyblue;      /* For seeing individual div purposes */
+  margin-top: 0;
+}
+.review-message{
+  background-color: coral;      /* For seeing individual div purposes */
+  line-height: 1.5;
+  height: 100%;
+  text-align: left;
+}
+
+.create-review{
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+.form-row{
+  background-color: coral;      /* For seeing individual div purposes */
+  display: flex;
+  flex-direction: row;
+}
+.form-label{
+  background-color: lightpink;      /* For seeing individual div purposes */
+  width: 100px;
+}
