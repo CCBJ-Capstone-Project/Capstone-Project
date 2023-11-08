@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router";
 
 export default function SingleUserPage({users}){
    const nav= useNavigate();
-   const {userId}= useParams();
+   const { userId }= useParams();
 
    const singleUser = users.find((user) =>{
       return user._id == userId;
@@ -15,9 +15,11 @@ export default function SingleUserPage({users}){
       console.log("Single user info:", result);
       return result;
    }
+  
    useEffect(()=> {
       displaySingleUser();
    }, []);
+  
    return(
       <>
       <h1>{singleUser.username}</h1>
