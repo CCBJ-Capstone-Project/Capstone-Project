@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { showSingleUser } from "../api/usersUtils";
+import { showSingleUser } from "../api/usersUtils.js";
 import { useParams, useNavigate } from "react-router";
 
 export default function SingleUserPage({users}){
