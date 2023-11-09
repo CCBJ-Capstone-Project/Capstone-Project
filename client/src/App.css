@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  margin: 0 0;
+  padding: 3rem;
   text-align: center;
 }
 
@@ -26,14 +26,15 @@ h1{
   grid-template-columns: auto auto;
   column-gap: 65px;
   row-gap: 35px;
+  justify-items: center;
 }
 
 .review-container{
   background-color: lightblue;      /* For seeing individual div purposes */
   display: flexbox;
   flex-direction: column;
-  margin: 10px 0;
-  width: 625px;
+  padding: 10px 10px;
+  width: 615px;
   border: 5px solid green;
   border-radius: 20px;
   height: fit-content;
@@ -45,6 +46,7 @@ h1{
   flex-direction: column;
   text-align: left;
   border-radius: 15px 15px 0 0;
+  margin-bottom: 0;
 }
 .author{
   background-color: lightseagreen;      /* For seeing individual div purposes */
@@ -53,12 +55,14 @@ h1{
 .review-title{
   background-color: lightskyblue;      /* For seeing individual div purposes */
   margin-top: 0;
+  margin-bottom: 0;
 }
 .review-message{
   background-color: coral;      /* For seeing individual div purposes */
   line-height: 1.5;
   height: 100%;
   text-align: left;
+  margin-top: 0;
 }
 
 .create-review{
@@ -74,4 +78,10 @@ h1{
 .form-label{
   background-color: lightpink;      /* For seeing individual div purposes */
   width: 100px;
+}
+.details-button{
+  height: fit-content;
+  width: fit-content;
+  font-size: 12px;
+  padding: 5px 10px;
 }
