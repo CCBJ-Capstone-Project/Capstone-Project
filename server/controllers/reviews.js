@@ -1,4 +1,5 @@
 import ReviewMessage from "../models/reviewModel.js";
+import updatePostCount from "../models/userModel.js";
 import mongoose from "mongoose";
 
 export const getAllReviews = async (req, res) => {
@@ -29,11 +30,13 @@ export const getReviewById = async (req, res) => {
 export const createReview = async (req, res) => {
   const review = req.body;
   const reviewId = new mongoose.Types.ObjectId();
-  const authorId = req.body.author;
-  const reviewWithIds = { ...review, reviewId, authorId };
+  const author = req.body.author;
+  const authorId = req.body.author._id;
+  const reviewWithIds = { ...review, reviewId, author };
   const newReview = new ReviewMessage(reviewWithIds);
   try {
     await newReview.save()
+    updatePostCount(authorId);
     res.send(newReview);
   } catch (error) {
     res.send(error.message);

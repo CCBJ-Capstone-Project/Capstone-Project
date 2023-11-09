@@ -1,27 +1,51 @@
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
+import { createUser, showAllUsers } from "../api/usersUtils";
+import { useNavigate } from "react-router-dom";
 
-export default function Register (props) {
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
-  const [name, setName] = useState('')
+export default function Register () {
+  const nav = useNavigate();
+  const [users, setUsers] = useState([]);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(email);
+  const getUsers = async () => {
+    const usersArr = await showAllUsers();
+    setUsers(usersArr);
   }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const newUser = await createUser(username, password);
+      console.log(newUser);
+
+      const newUsersArr = [...users, newUser];
+      setUsers(newUsersArr);
+
+      setUsername('');
+      setPassword('');
+      nav('/users');
+    } catch (error) {
+      console.error('Error creating user: ', error);
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return(
     <div className="auth-form-container">
       <h2>Register</h2>
-    <form onSubmit={handleSubmit}>
-    <label>email
-      <input type = "email" value = {email} onChange={(e) => setEmail(e.target.value)}/>
-    </label>
-    <label >password
-      <input type = "password" value={pass} onChange={(e) => setPass(e.target.value)}/>
-    </label>
-      <button type ="submit">Log In</button>
-    </form>
+      <form onSubmit={handleSubmit}>
+        <label>Username: 
+          <input type = "text" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+        </label>
+        <label >Password: 
+          <input type = "password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        </label>
+        <button type ="submit">Create Account</button>
+      </form>
     </div>
   )
 }

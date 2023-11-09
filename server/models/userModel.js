@@ -35,3 +35,16 @@ const userSchema = mongoose.Schema({
 const UserInfo = mongoose.model('UserInfo', userSchema);
 
 export default UserInfo;
+
+// Function to update postCount when a review is posted
+UserInfo.updatePostCount = async (userId) => {
+  try {
+    const user = await UserInfo.findById(userId);
+    if (user) {
+      user.postCount += 1; // Increment postCount
+      await user.save(); // Save the updated user document
+    }
+  } catch (error) {
+    console.error('Error updating postCount:', error);
+  }
+};

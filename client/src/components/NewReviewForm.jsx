@@ -1,16 +1,34 @@
 import { useState,useEffect } from "react"
-import { createReview } from "../api/reviewsUtils";
-import { useNavigate } from "react-router-dom";
+import { fetchReviews, createReview } from "../api/reviewsUtils";
+import { showAllUsers } from "../api/usersUtils";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function NewReviewForm({ reviews, setReviews }){
+export default function NewReviewForm(){
   const nav = useNavigate();
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [reviews, setReviews] = useState([]);
+  const [users, setUsers] = useState([]);
+  const { userId } = useParams();
+
+  async function getReviews(){
+    const reviewsArr = await fetchReviews();
+    setReviews(reviewsArr);
+  }
+  async function getUsers(){
+    const usersArr = await showAllUsers();
+    setUsers(usersArr);
+  }
+
+  const user = users.find((user) =>{
+    return user._id == userId;
+  })
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const result = await createReview(title, message);
+      console.log('Title: ', title, ' Message: ', message, ' Author: ', user);
+      const result = await createReview(title, message, user);
       console.log(result);
 
       const newReviews = [ ...reviews, result ];
@@ -24,22 +42,32 @@ export default function NewReviewForm({ reviews, setReviews }){
     }
   }
 
+  useEffect(() => {
+    getReviews();
+    getUsers();
+  }, [])
+
   return(
     <>
       <h1>Create Review</h1>
-      <form onSubmit={handleSubmit} method="post">
-        <label>
-          Title: 
-          <input type="text" value={title} onChange={(e) => {
-            setTitle(e.target.value);
-          }}/>
-        </label>
-        <label>
-          Message: 
-          <input type="text" value={message} onChange={(e) => {
-            setMessage(e.target.value);
-          }}/>
-        </label>
+      <form onSubmit={handleSubmit} method="post" className="create-review">
+        <div className="form-row">
+          <label className="form-row">
+            <p className="form-label">Title: </p>
+            <input type="text" value={title} onChange={(e) => {
+              setTitle(e.target.value);
+            }}/>
+          </label>
+        </div>
+        <div className="form-row">
+          <label className="form-row">
+            <p className="form-label">Message: </p>
+            <textarea value={message} rows={10} cols={50} onChange={(e) => {
+              setMessage(e.target.value);
+            }}>
+            </textarea>
+          </label>
+        </div>
         <button type="submit">Submit Review</button>
       </form>
     </>
