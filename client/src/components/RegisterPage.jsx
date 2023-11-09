@@ -7,6 +7,7 @@ export default function Register () {
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
 
   const getUsers = async () => {
     const usersArr = await showAllUsers();
@@ -15,6 +16,11 @@ export default function Register () {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if(password !== confirm){
+      alert("Passwords must match!")
+      return;
+    }
+    
     try {
       const newUser = await createUser(username, password);
       console.log(newUser);
@@ -24,6 +30,7 @@ export default function Register () {
 
       setUsername('');
       setPassword('');
+      setConfirm('');
       nav('/users');
     } catch (error) {
       console.error('Error creating user: ', error);
@@ -41,8 +48,11 @@ export default function Register () {
         <label>Username: 
           <input type = "text" value = {username} onChange={(e) => setUsername(e.target.value)}/>
         </label>
-        <label >Password: 
+        <label>Password: 
           <input type = "password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        </label>
+        <label>Confirm Password: 
+          <input type = "password" value={confirm} onChange={(e) => setConfirm(e.target.value)}/>
         </label>
         <button type ="submit">Create Account</button>
       </form>

@@ -1,15 +1,20 @@
 #root {
-  max-width: 1280px;
-  margin: 0 0;
-  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 100px;
 }
 
 .navbar{
-  background-color: lightgreen;     /* For seeing individual div purposes */
+  background-color: rgb(100% 100% 100% / 0.7);     /* Glassy Effect on navbar */
+  backdrop-filter: blur(30px);
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,69 +24,5 @@
 
 h1{
   color: #f6099d;
-}
-
-.feed{
-  display: grid;
-  grid-template-columns: auto auto;
-  column-gap: 65px;
-  row-gap: 35px;
-  justify-items: center;
-}
-
-.review-container{
-  background-color: lightblue;      /* For seeing individual div purposes */
-  display: flexbox;
-  flex-direction: column;
-  padding: 10px 10px;
-  width: 615px;
-  border: 5px solid green;
-  border-radius: 20px;
-  height: fit-content;
-}
-
-.review-header{
-  background-color: lightpink;      /* For seeing individual div purposes */
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  border-radius: 15px 15px 0 0;
-  margin-bottom: 0;
-}
-.author{
-  background-color: lightseagreen;      /* For seeing individual div purposes */
-  margin-bottom: 0;
-}
-.review-title{
-  background-color: lightskyblue;      /* For seeing individual div purposes */
-  margin-top: 0;
-  margin-bottom: 0;
-}
-.review-message{
-  background-color: coral;      /* For seeing individual div purposes */
-  line-height: 1.5;
-  height: 100%;
-  text-align: left;
-  margin-top: 0;
-}
-
-.create-review{
-  display: flex;
-  flex-direction: column;
-  row-gap: 25px;
-}
-.form-row{
-  background-color: coral;      /* For seeing individual div purposes */
-  display: flex;
-  flex-direction: row;
-}
-.form-label{
-  background-color: lightpink;      /* For seeing individual div purposes */
-  width: 100px;
-}
-.details-button{
-  height: fit-content;
-  width: fit-content;
-  font-size: 12px;
-  padding: 5px 10px;
+  margin-top: 65px;
 }
