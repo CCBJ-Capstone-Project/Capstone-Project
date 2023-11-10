@@ -45,15 +45,24 @@ export default function Register () {
     <div className="auth-form-container">
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
-        <label>Username: 
-          <input type = "text" value = {username} onChange={(e) => setUsername(e.target.value)}/>
-        </label>
-        <label>Password: 
-          <input type = "password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        </label>
-        <label>Confirm Password: 
-          <input type = "password" value={confirm} onChange={(e) => setConfirm(e.target.value)}/>
-        </label>
+        <div>
+          <label className="form-row">
+            <p className="form-label">Username:</p>
+            <input type = "text" value = {username} onChange={(e) => setUsername(e.target.value)}/>
+          </label>
+        </div>
+        <div>
+          <label className="form-row">
+            <p className="form-label">Password:</p>
+            <input type = "password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+          </label>
+        </div>
+        <div>
+          <label className="form-row">
+            <p className="form-label">Confirm Password:</p>
+            <input type = "password" value={confirm} onChange={(e) => setConfirm(e.target.value)}/>
+          </label>
+        </div>
         <button type ="submit">Create Account</button>
       </form>
     </div>

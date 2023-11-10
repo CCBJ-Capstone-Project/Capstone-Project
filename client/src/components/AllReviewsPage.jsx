@@ -17,7 +17,9 @@ export default function AllReviewsPage(){
   return(
     <>
       <h1>All Reviews Page</h1>
-      <Reviews reviews={reviews} />
+      <div className="feed">
+        <Reviews reviews={reviews} />
+      </div>
     </>
   )
 }

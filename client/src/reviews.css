@@ -78,7 +78,7 @@
 
 .form-label{
   background-color: lightpink;      /* For seeing individual div purposes */
-  width: 100px;
+  width: 150px;
 }
 
 .details-button{
@@ -97,21 +97,16 @@
 }
 
 @media screen and (max-width: 1360px){
-  .review-container{
+  .feed > .review-container{
     width: 500px;
   }
 }
 @media screen and (max-width: 1140px){
-  .review-container{
+  .feed > .review-container{
     width: 400px;
   }
 }
 @media screen and (max-width: 950px){
-  .review-container{
-    width: 300px;
-  }
-}
-@media screen and (max-width: 800px){
   .feed{
     grid-template-columns: 1fr;
   }

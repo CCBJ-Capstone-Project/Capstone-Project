@@ -28,11 +28,9 @@ export default function Reviews({ reviews }){
   console.log(reviews);
   return(
     <>
-      <div className='feed'>
         {reviews.map((i) => {
           return list(i)
         })}
-      </div>
     </>
   )
 }
