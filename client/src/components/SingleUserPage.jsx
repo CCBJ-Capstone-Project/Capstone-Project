@@ -23,9 +23,10 @@ export default function SingleUserPage(){
          }
       }
    }
+
    function goToUpdatedUser(){
       nav(`/edit-user/${userId}`);
-    };
+   };
 
    useEffect(()=> {
       console.log('User ID from URL: ', userId);
@@ -51,7 +52,6 @@ export default function SingleUserPage(){
                   </div>
                   <div>
                      <button onClick={goToUpdatedUser}>Update Your Info</button> 
-                  {/* <Reviews reviews={userReviewsArr} /> */}
                   </div>
                </>
             ) : (
