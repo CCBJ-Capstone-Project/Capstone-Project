@@ -30,7 +30,43 @@ export const createUser = async (username, password) => {
         console.log(result);
         return result;
     } catch (error) {
-        console.error('Error occurred while creating review: ', error);
+        console.error('Error occurred while creating user: ', error);
         return { success: false };
     }
-};
+}
+
+export const updateuser = async (username, password) =>{
+try{
+    if(!username && !password){
+        return;
+    }
+
+if (!username) {
+    const response = await fetch(`${BASE_URL}/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ user }),
+    });
+    const result = await response.json();
+    console.log('Result of PATCH request: ', result);
+    return result;
+  }
+  else {
+    const response = await fetch(`${BASE_URL}/users/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    const result = await response.json();
+    console.log('Result of PATCH request: ', result);
+    return result;
+  }
+} catch (error) {
+  console.error('Error occured updating user: ', error);
+  return { success: false };
+}
+}
