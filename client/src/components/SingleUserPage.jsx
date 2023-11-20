@@ -1,16 +1,32 @@
 import { useState, useEffect } from "react"
 import { showAllUsers, showSingleUser } from "../api/usersUtils.js";
 import { useParams, useNavigate } from "react-router";
+import { fetchReviews } from "../api/reviewsUtils.js";
+import Reviews from "./Reviews.jsx";
 
 export default function SingleUserPage(){
    const nav= useNavigate();
    const [selectedUser, setSelectedUser] = useState(null);
    const [users, setUsers] = useState([]);
+   const [reviews, setReviews] = useState([]);
+   const [userReviews, setUserReviews] = useState([]);
    const { userId }= useParams();
 
    const getUsers = async () => {
       const usersArr = await showAllUsers();
       setUsers(usersArr);
+   }
+
+   const getReviews = async () => {
+      const reviewsArr = await fetchReviews();
+      getUserReviews(reviewsArr);
+      setReviews(reviewsArr);
+   }
+
+   function getUserReviews(reviews){
+      const filteredReviews = reviews.filter((review) => review.author._id === userId);
+      setUserReviews(filteredReviews);
+      console.log(userReviews);
    }
 
    async function displaySingleUser(){
@@ -37,6 +53,7 @@ export default function SingleUserPage(){
    
    useEffect(() => {
       getUsers();
+      getReviews();
       displaySingleUser();
    }, [])
 
@@ -46,7 +63,13 @@ export default function SingleUserPage(){
             {selectedUser ? (
                <>
                   <h1>{selectedUser.username}</h1>
-                  <h3>Post Count: {selectedUser.postCount}</h3>
+                  <div style={{
+                     display: 'grid',
+                     gridTemplateColumns: '1fr',
+                     rowGap: '35px'
+                  }}>
+                     <Reviews reviews={userReviews}/>
+                  </div>
                   <div>
                      <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>Write Review</button>
                   </div>

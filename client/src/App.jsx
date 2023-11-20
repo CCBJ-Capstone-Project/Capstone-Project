@@ -11,7 +11,7 @@ import NewReviewForm from './components/NewReviewForm';
 import UpdateReviewPage from './components/UpdateReviewPage';
 import Register from './components/RegisterPage';
 import SingleUserPage from './components/SingleUserPage';
-import GetUpdatedUser from './components/UpdateUser';
+import UpdateUserPage from './components/UpdateUser';
 import './App.css';
 import './login.css';
 import './reviews.css';
@@ -32,7 +32,7 @@ function App() {
         <Route path='/users/:userId' element={<SingleUserPage users={users}/>}/>
         <Route path='/reviews' element={<AllReviewsPage />}/>
         <Route path='/reviews/:reviewId' element={<SingleReview />}/>
-        <Route path='/edit-user/:userId' element={<GetUpdatedUser users={users}/>}/>
+        <Route path='/edit-user/:userId' element={<UpdateUserPage users={users}/>}/>
         <Route path='/edit-review-form/:reviewId' element={<UpdateReviewPage reviews={reviews}/>}/>
         <Route path='/new-review-form/:userId' element={<NewReviewForm reviews={reviews} setReviews={setReviews} users={users}/>}/>
         <Route path='reviews/search/:searchTerm' />
