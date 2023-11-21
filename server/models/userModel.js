@@ -29,7 +29,8 @@ const userSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
-  }
+  },
+  profilePicture: String
 })
 
 const UserInfo = mongoose.model('UserInfo', userSchema);

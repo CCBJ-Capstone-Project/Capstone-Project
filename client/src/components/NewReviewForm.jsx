@@ -51,15 +51,15 @@ export default function NewReviewForm(){
     <>
       <h1>Create Review</h1>
       <form onSubmit={handleSubmit} method="post" className="create-review">
-        <div className="form-row">
+        <div>
           <label className="form-row">
             <p className="form-label">Title: </p>
-            <input type="text" value={title} onChange={(e) => {
+            <input type="text" value={title} size='63' onChange={(e) => {
               setTitle(e.target.value);
             }}/>
           </label>
         </div>
-        <div className="form-row">
+        <div>
           <label className="form-row">
             <p className="form-label">Message: </p>
             <textarea value={message} rows={10} cols={50} onChange={(e) => {

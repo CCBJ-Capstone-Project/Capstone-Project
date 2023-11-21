@@ -11,8 +11,10 @@ import NewReviewForm from './components/NewReviewForm';
 import UpdateReviewPage from './components/UpdateReviewPage';
 import Register from './components/RegisterPage';
 import SingleUserPage from './components/SingleUserPage';
+import UpdateUserPage from './components/UpdateUser';
 import './App.css';
 import './login.css';
+import './reviews.css';
 
 function App() {
   const [form, setForm] = useState('');
@@ -36,6 +38,10 @@ function App() {
         />
         <Route path="/reviews" element={<AllReviewsPage />} />
         <Route path="/reviews/:reviewId" element={<SingleReview />} />
+        <Route
+          path="/edit-user/:userId"
+          element={<UpdateUserPage users={users} />}
+        />
         <Route
           path="/edit-review-form/:reviewId"
           element={<UpdateReviewPage reviews={reviews} />}

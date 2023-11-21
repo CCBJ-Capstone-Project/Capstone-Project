@@ -6,7 +6,7 @@ export default function SingleReview(){
   const [selectedReview, setSelectedReview] = useState(null);
   const [reviews, setReviews] = useState([]);
   const nav = useNavigate();
-  const { reviewId } = useParams();
+  const { reviewId, userId } = useParams();
 
   async function getReviews(){
     const reviewsArr = await fetchReviews();
@@ -58,12 +58,23 @@ export default function SingleReview(){
       <div>
       {selectedReview ? (
         <>
-          <h1>{selectedReview.title}</h1>
-          <h1>{selectedReview.message}</h1>
-          <div>
-            <button onClick={removeReview}>Delete</button>
-            <button onClick={goToEditForm}>Update</button>
+          <div className="selected-review-container">
+            <div className='review-header'>
+              <h2 className='author'>
+                <img src={selectedReview.author.profilePicture} alt='Profile Picture' />
+                {selectedReview.author.username}
+                </h2>
+              <h3 className='review-title'>{selectedReview.title}</h3>
+            </div>
+            <div className='review-message'>
+              <p>{selectedReview.message}</p>
+            </div>
+            <div className="button-row">
+              <button onClick={removeReview}>Delete</button>
+              <button onClick={goToEditForm}>Update</button>
+            </div>
           </div>
+            
         </>
       ) : (
         <p>Review not found</p>
