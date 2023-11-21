@@ -6,7 +6,7 @@ export default function SingleReview(){
   const [selectedReview, setSelectedReview] = useState(null);
   const [reviews, setReviews] = useState([]);
   const nav = useNavigate();
-  const { reviewId } = useParams();
+  const { reviewId, userId } = useParams();
 
   async function getReviews(){
     const reviewsArr = await fetchReviews();

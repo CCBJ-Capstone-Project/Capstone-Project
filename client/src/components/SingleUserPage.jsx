@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { showAllUsers, showSingleUser } from "../api/usersUtils.js";
-import { useParams, useNavigate } from "react-router";
 import { fetchReviews } from "../api/reviewsUtils.js";
+import { useParams, useNavigate } from "react-router";
 import Reviews from "./Reviews.jsx";
 
 export default function SingleUserPage(){
@@ -11,6 +11,8 @@ export default function SingleUserPage(){
    const [reviews, setReviews] = useState([]);
    const [userReviews, setUserReviews] = useState([]);
    const { userId }= useParams();
+   const [reviews, setReviews]= useState([]);
+   const [userReviews, setUserReviews] = useState([]);
 
    const getUsers = async () => {
       const usersArr = await showAllUsers();
@@ -19,14 +21,15 @@ export default function SingleUserPage(){
 
    const getReviews = async () => {
       const reviewsArr = await fetchReviews();
-      getUserReviews(reviewsArr);
+      filterUsersPosts(reviewsArr);
       setReviews(reviewsArr);
+      console.log(reviewsArr);
    }
 
-   function getUserReviews(reviews){
-      const filteredReviews = reviews.filter((review) => review.author._id === userId);
-      setUserReviews(filteredReviews);
-      console.log(userReviews);
+   function filterUsersPosts(reviews){
+      const filteredPost = reviews.filter((review) => review.author._id === userId);
+      console.log(filteredPost, "here should be the filtered review");
+      setUserReviews(filteredPost);
    }
 
    async function displaySingleUser(){
@@ -40,9 +43,11 @@ export default function SingleUserPage(){
       }
    }
 
+
    function goToUpdatedUser(){
       nav(`/edit-user/${userId}`);
    };
+
 
    useEffect(()=> {
       console.log('User ID from URL: ', userId);
@@ -52,8 +57,8 @@ export default function SingleUserPage(){
    }, [userId, users]);
    
    useEffect(() => {
-      getUsers();
       getReviews();
+      getUsers();
       displaySingleUser();
    }, [])
 
