@@ -6,11 +6,14 @@ export default function Reviews({ reviews }){
   const list = ({ _id, title, message, author }) => (
     <div key={_id} className='review-container'>
       <div className='review-header'>
-        <h2 className='author'>{author.username}</h2>
+        <h2 className='author'>
+          <img src={author.profilePicture} alt='Profile Picture' />
+          {author.username}
+          </h2>
         <h3 className='review-title'>{title}</h3>
       </div>
       <div className='review-message'>
-        <h4>{message}</h4>
+        <p>{message}</p>
       </div>
 
       <button
@@ -25,11 +28,9 @@ export default function Reviews({ reviews }){
   console.log(reviews);
   return(
     <>
-      <div className='feed'>
         {reviews.map((i) => {
           return list(i)
         })}
-      </div>
     </>
   )
 }

@@ -4,11 +4,12 @@ import { fetchReviews } from "../api/reviewsUtils.js";
 import { useParams, useNavigate } from "react-router";
 import Reviews from "./Reviews.jsx";
 
-
 export default function SingleUserPage(){
    const nav= useNavigate();
    const [selectedUser, setSelectedUser] = useState(null);
    const [users, setUsers] = useState([]);
+   const [reviews, setReviews] = useState([]);
+   const [userReviews, setUserReviews] = useState([]);
    const { userId }= useParams();
    const [reviews, setReviews]= useState([]);
    const [userReviews, setUserReviews] = useState([]);
@@ -29,7 +30,7 @@ export default function SingleUserPage(){
       const filteredPost = reviews.filter((review) => review.author._id === userId);
       console.log(filteredPost, "here should be the filtered review");
       setUserReviews(filteredPost);
-     }
+   }
 
    async function displaySingleUser(){
       if(selectedUser){
@@ -59,7 +60,6 @@ export default function SingleUserPage(){
       getReviews();
       getUsers();
       displaySingleUser();
-      
    }, [])
 
    return(
@@ -68,8 +68,12 @@ export default function SingleUserPage(){
             {selectedUser ? (
                <>
                   <h1>{selectedUser.username}</h1>
-                  <div>
-                  <Reviews reviews={userReviews} />
+                  <div style={{
+                     display: 'grid',
+                     gridTemplateColumns: '1fr',
+                     rowGap: '35px'
+                  }}>
+                     <Reviews reviews={userReviews}/>
                   </div>
                   <div>
                      <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>Write Review</button>

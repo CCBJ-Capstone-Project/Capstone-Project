@@ -1,4 +1,11 @@
+
 const BASE_URL = 'https://capstone-project-server-aa069cbf5e62.herokuapp.com';
+const LOREM_PICSUM_URL = 'https://picsum.photos/100?image=';
+
+const getRandomProfilePicture = () => {
+    const imageId = Math.floor(Math.random() * 1085);
+    return `${LOREM_PICSUM_URL}${imageId}`;
+}
 
 export const showAllUsers = async () => {
     const response = await fetch(`${BASE_URL}/users`);
@@ -18,12 +25,13 @@ export const showSingleUser = async (id) => {
 
 export const createUser = async (username, password) => {
     try {
+        const profilePicture = getRandomProfilePicture();
         const response = await fetch(`${BASE_URL}/users`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password, profilePicture }),
         });
         const result = await response.json();
 

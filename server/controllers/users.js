@@ -11,7 +11,7 @@ const getUsersWithPosts = async (username) => {
 export const getAllUsers = async (req, res) => {
   try {
     const users = await UserInfo.find();
-    console.log(users);
+    // console.log(users);
     res.send(users);
   } catch (error) {
     res.send(error.message);
@@ -38,7 +38,7 @@ export const getUserById = async (req, res) => {
 export const createUser = async (req, res) => {
   const user = req.body;
   const userId = new mongoose.Types.ObjectId();
-  const userWithId = { ...user, userId};
+  const userWithId = { ...user, userId };
   const newUser = new UserInfo(userWithId);
   try {
     await newUser.save()

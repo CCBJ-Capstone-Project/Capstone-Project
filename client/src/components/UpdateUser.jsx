@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { updateUser } from "../api/usersUtils";
 
-export default function GetUpdatedUser({users}){
+export default function UpdateUserPage({users}){
     const { userId } = useParams();
     const [updatedUserName, setUpdatedUserName] = useState('');
-    const [updatedPassword, setUpdatedPassword] = useState('')
+    const [updatedPassword, setUpdatedPassword] = useState('');
 
     async function editUser(){
       try{
