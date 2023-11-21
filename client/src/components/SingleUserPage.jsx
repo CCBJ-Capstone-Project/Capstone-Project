@@ -11,8 +11,6 @@ export default function SingleUserPage(){
    const [reviews, setReviews] = useState([]);
    const [userReviews, setUserReviews] = useState([]);
    const { userId }= useParams();
-   const [reviews, setReviews]= useState([]);
-   const [userReviews, setUserReviews] = useState([]);
 
    const getUsers = async () => {
       const usersArr = await showAllUsers();
@@ -42,7 +40,6 @@ export default function SingleUserPage(){
          }
       }
    }
-
 
    function goToUpdatedUser(){
       nav(`/edit-user/${userId}`);
