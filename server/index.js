@@ -10,9 +10,6 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-// Serve static files from the 'dist' folder (client build output)
-app.use(express.static(path.join(__dirname, '../client/dist')));
-
 const CONNECTION_URL = 'mongodb+srv://ccbj_capstone:ccbj_capstone123@capstonedatabase.j8gktwu.mongodb.net/';
 const PORT = process.env.PORT || 8080;
 
