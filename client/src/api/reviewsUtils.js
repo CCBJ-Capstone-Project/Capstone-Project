@@ -1,4 +1,4 @@
-const BASE_URL = 'https://capstone-project-server-aa069cbf5e62.herokuapp.com';
+const BASE_URL = 'http://localhost:8080';
 
 export const fetchReviews = async () => {
   const response = await fetch(`${BASE_URL}/reviews`);
@@ -10,9 +10,9 @@ export const fetchReviews = async () => {
 export const searchReviews = async (query) => {
   try {
     const response = await fetch(`${BASE_URL}/reviews/search?query=${query}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
     });
@@ -37,9 +37,9 @@ export const createReview = async (title, message, author) => {
   try {
     console.log('Author ID: ', author._id);
     const response = await fetch(`${BASE_URL}/reviews`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ title, message, author }),
     });
@@ -63,9 +63,9 @@ export const updateReview = async (id, title, message) => {
     // If no new title is present only update message
     if (!title) {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ message }),
       });
@@ -77,9 +77,9 @@ export const updateReview = async (id, title, message) => {
     // If no new message is present only update title
     if (!message) {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title }),
       });
@@ -91,9 +91,9 @@ export const updateReview = async (id, title, message) => {
     // Otherwise update both title and message
     else {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: "PATCH",
+        method: 'PATCH',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({ title, message }),
       });
@@ -110,9 +110,9 @@ export const updateReview = async (id, title, message) => {
 export const deleteReview = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     });
 
