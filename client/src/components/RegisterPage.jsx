@@ -28,10 +28,13 @@ export default function Register () {
       const newUsersArr = [...users, newUser];
       setUsers(newUsersArr);
 
+      sessionStorage.setItem('status', 'loggedIn');
+      sessionStorage.setItem('user', JSON.stringify(newUser));
+
       setUsername('');
       setPassword('');
       setConfirm('');
-      nav('/users');
+      nav('/');
     } catch (error) {
       console.error('Error creating user: ', error);
     }

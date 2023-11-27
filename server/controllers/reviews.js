@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 export const getAllReviews = async (req, res) => {
   try {
-    const reviews = await ReviewMessage.find().populate('author');
+    const reviews = await ReviewMessage.find();
     // console.log(reviews);
     res.send(reviews);
   } catch (error) {
@@ -19,7 +19,8 @@ export const getReviewById = async (req, res) => {
     const query = { _id: id };
 
     // Find review within reviews database that has that unique ID
-    const review = await ReviewMessage.find(query);
+    const review = await ReviewMessage.findOne(query);
+    console.log('Selected Review from Reviews Controllers: ', review);
 
     res.send(review)
   } catch (error) {

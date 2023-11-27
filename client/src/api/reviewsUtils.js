@@ -1,4 +1,5 @@
 const BASE_URL = 'https://capstone-project-server-aa069cbf5e62.herokuapp.com';
+const LOCAL_URL = 'http://localhost:8080';
 
 export const fetchReviews = async () => {
   const response = await fetch(`${BASE_URL}/reviews`);

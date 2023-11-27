@@ -1,8 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar';
 
 export default function Navbar() {
+  const nav = useNavigate();
+  let loggedUser;
+  if(sessionStorage.getItem('status')==='loggedIn'){
+    loggedUser = JSON.parse(sessionStorage.user);
+    console.log('LoggedIn user info: ', loggedUser);
+  }
+
+  const goToProfile = () =>{
+    nav(`/users/${loggedUser._id}`);
+  }
+
   return (
     <div className="navbar">
       <Link to="/">Home</Link>
@@ -10,6 +21,7 @@ export default function Navbar() {
       <Link to="/users">Users</Link>
       <Link to="/reviews">Reviews</Link>
       <SearchBar />
+      <img src={loggedUser?.profilePicture} onClick={goToProfile}/>
     </div>
   );
 }

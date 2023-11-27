@@ -28,9 +28,9 @@ export default function Reviews({ reviews }){
   console.log(reviews);
   return(
     <>
-        {reviews.map((i) => {
-          return list(i)
-        })}
+      {reviews.map((i) => {
+        return list(i)
+      })}
     </>
   )
 }

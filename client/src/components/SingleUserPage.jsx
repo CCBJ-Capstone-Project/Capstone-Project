@@ -11,6 +11,11 @@ export default function SingleUserPage(){
    const [reviews, setReviews] = useState([]);
    const [userReviews, setUserReviews] = useState([]);
    const { userId }= useParams();
+   let loggedUser;
+   if(sessionStorage.getItem('status')==='loggedIn'){
+      loggedUser = JSON.parse(sessionStorage.user);
+      console.log('LoggedIn user info: ', loggedUser);
+   }
 
    const getUsers = async () => {
       const usersArr = await showAllUsers();
@@ -72,12 +77,25 @@ export default function SingleUserPage(){
                   }}>
                      <Reviews reviews={userReviews}/>
                   </div>
-                  <div>
-                     <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>Write Review</button>
-                  </div>
-                  <div>
-                     <button onClick={goToUpdatedUser}>Update Your Info</button> 
-                  </div>
+                  {loggedUser ? (
+                     // Check if loggedUser exists before comparing passwords
+                     loggedUser.password === selectedUser.password ? (
+                        <>
+                           <div>
+                              <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>
+                                 Write Review
+                              </button>
+                           </div>
+                           <div>
+                           <button onClick={goToUpdatedUser}>Update Your Info</button>
+                           </div>
+                        </>
+                     ) : (
+                        <p></p>
+                     )
+                  ) : (
+                     <p>Please log in to perform actions.</p>
+                  )}
                </>
             ) : (
                <p>User Not Found</p>

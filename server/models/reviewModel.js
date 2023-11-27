@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 import { v4 as uuidv4, validate as uuidValidate } from "uuid"; // Create unique id for each user with uuid() function
 import UserInfo from './userModel.js';
+import Comment from './commentModel.js';
 
 const reviewSchema = mongoose.Schema({
   title: {
@@ -19,7 +20,8 @@ const reviewSchema = mongoose.Schema({
   createdAt: {
     type: Date,
     default: new Date()
-  }
+  },
+  comments: [Comment.schema]
 })
 
 const ReviewMessage = mongoose.model('reviewMessage', reviewSchema);

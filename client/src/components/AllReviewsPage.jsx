@@ -16,7 +16,7 @@ export default function AllReviewsPage(){
   console.log(reviews);
   return(
     <>
-      <h1>All Reviews Page</h1>
+      {/* <h1>All Reviews Page</h1> */}
       <div className="feed">
         <Reviews reviews={reviews} />
       </div>

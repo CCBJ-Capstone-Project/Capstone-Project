@@ -34,3 +34,5 @@ app.use('/users', usersRoutes);
 import reviewsRoutes from './routes/reviews.js';
 app.use('/reviews', reviewsRoutes);
 
+import commentsRoutes from './routes/comments.js';
+app.use('/reviews/', commentsRoutes);
