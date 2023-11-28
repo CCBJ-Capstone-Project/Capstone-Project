@@ -1,5 +1,12 @@
 import express from 'express';
-import { createUser, deleteUser, getAllUsers, getUserById, updateUser } from '../controllers/users.js';
+import {
+  createUser,
+  searchUsers,
+  deleteUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+} from '../controllers/users.js';
 
 const router = express.Router();
 
@@ -8,6 +15,16 @@ const router = express.Router();
 // GET /users
 router.get('/', getAllUsers);
 
+router.post('/users/search', async (req, res) => {
+  try {
+    const { query } = req.body;
+    const users = await searchUsers(query);
+    res.json(users);
+  } catch (error) {
+    console.error('Error during user search:', error);
+    res.status(500).json({ error: 'An error occurred during user search' });
+  }
+});
 // GET /users/:id
 router.get('/:id', getUserById);
 
