@@ -50,6 +50,11 @@ export default function SingleUserPage(){
       nav(`/edit-user/${userId}`);
    };
 
+   function logout(){
+      sessionStorage.setItem('status', 'loggedOut');
+      sessionStorage.setItem('user', null);
+      nav('/');
+   }
 
    useEffect(()=> {
       console.log('User ID from URL: ', userId);
@@ -80,16 +85,17 @@ export default function SingleUserPage(){
                   {loggedUser ? (
                      // Check if loggedUser exists before comparing passwords
                      loggedUser.password === selectedUser.password ? (
-                        <>
-                           <div>
-                              <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>
-                                 Write Review
-                              </button>
-                           </div>
-                           <div>
-                           <button onClick={goToUpdatedUser}>Update Your Info</button>
-                           </div>
-                        </>
+                        <div className="users-buttons">
+                           <button onClick={() => nav(`/new-review-form/${selectedUser._id}`)}>
+                              Write Review
+                           </button>
+                           <button onClick={goToUpdatedUser}>
+                              Update Your Info
+                           </button>
+                           <button onClick={logout}>
+                              LogOut
+                           </button>
+                        </div>
                      ) : (
                         <p></p>
                      )

@@ -52,7 +52,8 @@ const reviewSchema = mongoose.Schema({
     type: Date,
     default: new Date()
   },
-  comments: [commentSchema]
+  comments: [commentSchema],
+  rating: Number
 })
 
 const ReviewMessage = mongoose.model('reviewMessage', reviewSchema);

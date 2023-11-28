@@ -7,6 +7,7 @@ export default function NewReviewForm(){
   const nav = useNavigate();
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [rating, setRating] = useState('');
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
   const { userId } = useParams();
@@ -30,8 +31,8 @@ export default function NewReviewForm(){
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      console.log('Title: ', title, ' Message: ', message, ' Author: ', user);
-      const result = await createReview(title, message, user);
+      console.log('Title: ', title, ' Message: ', message, 'Rating: ', rating , ' Author: ', user);
+      const result = await createReview(title, message, rating, user);
       console.log(result);
 
       const newReviews = [ ...reviews, result ];
@@ -69,6 +70,14 @@ export default function NewReviewForm(){
               setMessage(e.target.value);
             }}>
             </textarea>
+          </label>
+        </div>
+        <div>
+          <label className="form-row">
+            <p className="form-label">Rating (1-10): </p>
+            <input type="number" value={rating} size='63' onChange={(e) => {
+              setRating(e.target.value);
+            }}/>
           </label>
         </div>
         <button type="submit">Submit Review</button>

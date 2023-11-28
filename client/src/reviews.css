@@ -12,7 +12,7 @@
   flex-direction: column;
   padding: 10px 10px;
   width: 615px;
-  height: 400px;
+  height: fit-content;
   border: 2px solid aqua;
   border-radius: 20px;
 }
@@ -49,10 +49,12 @@
 
 .review-title{
   /* background-color: lightskyblue;      For seeing individual div purposes */
-  border-bottom: 2px solid aqua;
   margin-top: 5px;
   margin-bottom: 0;
   line-height: 2;
+}
+.review-rating{
+  border-bottom: 2px solid aqua;
   padding-bottom: 5px;
 }
 
@@ -61,7 +63,7 @@
   line-height: 1.5;
   text-align: left;
   margin-top: 0;
-  height: 255px;
+  height: 230px;
   overflow-y: scroll;
 }
 

@@ -40,3 +40,10 @@ h1{
 button:hover{
   border-color: aqua;
 }
+
+.users-buttons{
+  display: flexbox;
+  width: 500px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

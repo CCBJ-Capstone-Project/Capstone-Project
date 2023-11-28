@@ -84,6 +84,7 @@ export default function SingleReview(){
                 {selectedReview.author.username}
               </h2>
               <h3 className='review-title'>{selectedReview.title}</h3>
+              <h3 className='review-rating'>Rating: {selectedReview.rating}</h3>
             </div>
             <div className='review-message'>
               <p>{selectedReview.message}</p>

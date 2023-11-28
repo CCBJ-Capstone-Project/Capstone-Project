@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function ReviewInfo({ _id, title, message, author }) {
+export default function ReviewInfo({ _id, title, message, rating, author }) {
   const nav = useNavigate();
   return (
     <div key={_id} className="review-container">
@@ -10,6 +10,7 @@ export default function ReviewInfo({ _id, title, message, author }) {
           {author.username}
         </h2>
         <h3 className="review-title">{title}</h3>
+        <h3 className='review-rating'>Rating: {rating}</h3>
       </div>
       <div className="review-message">
         <p>{message}</p>

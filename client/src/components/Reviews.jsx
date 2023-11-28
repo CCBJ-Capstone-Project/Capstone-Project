@@ -15,6 +15,7 @@ export default function Reviews({ reviews }) {
             _id={i._id}
             title={i.title}
             message={i.message}
+            rating={i.rating}
             author={i.author}
           ></ReviewInfo>
         );
