@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Navbar, LoginPage, HomePage, AllReviewsPage, SingleReview, AllUsersPage, NewReviewForm, UpdateReviewPage, Register, SingleUserPage, UpdateUserPage, UserSearch, ReviewSearch } from './components/imports';
+import { Navbar, LoginPage, HomePage, AllReviewsPage, SingleReview, AllUsersPage, NewReviewForm, UpdateReviewPage, Register, SingleUserPage, UpdateUserPage, UserSearch, ReviewSearch, CommentForm, SingleComment } from './components/imports';
 import './App.css';
 import './login.css';
 import './reviews.css';
@@ -26,6 +26,8 @@ function App() {
         <Route path="/new-review-form/:userId" element={ <NewReviewForm reviews={reviews} setReviews={setReviews} users={users} />} />
         <Route path="/reviewsearch" element={<ReviewSearch></ReviewSearch>} />
         <Route path="/usersearch" element={<UserSearch></UserSearch>} />
+        <Route path="/comment-form/:reviewId" element={<CommentForm />} />
+        <Route path="/reviews/:reviewId/comments/:commentId" element={<SingleComment/>} />
       </Routes>
     </>
   );
