@@ -38,4 +38,16 @@ router.patch('/:id', updateUser);
 // DELETE /users/:id
 router.delete('/:id', deleteUser);
 
+// Searching function
+router.post('users/search', async (req, res) => {
+  try {
+    const { query } = req.body;
+    const users = await searchUsers(query);
+    res.json(users);
+  } catch (error) {
+    console.error('Error during user search:', error);
+    res.status(500).json({ error: 'An error occurred during user search' });
+  }
+});
+
 export default router;

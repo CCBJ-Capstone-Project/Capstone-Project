@@ -23,11 +23,11 @@ app.get('/', (req, res, next) => {
 
 mongoose
   .connect(CONNECTION_URL)
-  .then(() =>
-    app.listen(PORT, () =>
-      console.log(`Server running on http://localhost:${PORT}`)
-    )
-  )
+  .then(() => 
+    app.listen(
+      PORT,
+      () => console.log(`Server running on http://localhost:${PORT}`)
+    ))
   .catch((error) => console.log(error));
 
 import usersRoutes from './routes/users.js';
