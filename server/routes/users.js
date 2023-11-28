@@ -1,10 +1,10 @@
 import express from 'express';
 import {
   createUser,
-  searchUsers,
   deleteUser,
   getAllUsers,
   getUserById,
+  searchUsers,
   updateUser,
 } from '../controllers/users.js';
 
@@ -25,6 +25,7 @@ router.post('/users/search', async (req, res) => {
     res.status(500).json({ error: 'An error occurred during user search' });
   }
 });
+
 // GET /users/:id
 router.get('/:id', getUserById);
 

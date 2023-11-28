@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
 import UserInfo from '../models/userModel.js';
 
+const BASE_URL = 'https://capstone-project-server-aa069cbf5e62.herokuapp.com';
+const LOCAL_URL = `http://localhost:8080`;
+
 const getUsersWithPosts = async (username) => {
   return UserInfo.find({ username: username })
     .populate('posts').exec((err, posts) => {
@@ -83,3 +86,24 @@ export const deleteUser = async (req, res) => {
     console.error('Error while deleting user: ', error);
   }
 }
+
+export const searchUsers = async (query) => {
+  try {
+    const response = await fetch(
+      `${LOCAL_URL}/users/users/search?query=${query}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: query }),
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    console.error('An error has occured during the search:', error);
+    return { success: false };
+  }
+};
