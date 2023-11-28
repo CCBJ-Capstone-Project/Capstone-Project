@@ -1,4 +1,5 @@
 const BASE_URL = 'https://capstone-project-server-aa069cbf5e62.herokuapp.com';
+//const BASE_URL = `http://localhost:8080`;
 const LOREM_PICSUM_URL = 'https://picsum.photos/100?image=';
 
 const getRandomProfilePicture = () => {
@@ -8,13 +9,16 @@ const getRandomProfilePicture = () => {
 
 export const searchUsers = async (query) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/search?query=${query}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ query }),
-    });
+    const response = await fetch(
+      `${BASE_URL}/users/users/search?query=${query}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ query: query }),
+      }
+    );
     const result = await response.json();
     console.log(result);
     return result;

@@ -12,6 +12,8 @@ import UpdateReviewPage from './components/UpdateReviewPage';
 import Register from './components/RegisterPage';
 import SingleUserPage from './components/SingleUserPage';
 import UpdateUserPage from './components/UpdateUser';
+import UserSearch from './components/UserSearch';
+import ReviewSearch from './components/ReviewSearch';
 import './App.css';
 import './login.css';
 import './reviews.css';
@@ -56,7 +58,8 @@ function App() {
             />
           }
         />
-        <Route path="reviews/search/:searchTerm" />
+        <Route path="/reviewsearch" element={<ReviewSearch></ReviewSearch>} />
+        <Route path="/usersearch" element={<UserSearch></UserSearch>} />
       </Routes>
     </>
   );

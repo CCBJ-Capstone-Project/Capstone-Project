@@ -1,36 +1,24 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import ReviewInfo from './ReviewInfo';
 
-export default function Reviews({ reviews }){
+export default function Reviews({ reviews }) {
   const nav = useNavigate();
 
-  const list = ({ _id, title, message, author }) => (
-    <div key={_id} className='review-container'>
-      <div className='review-header'>
-        <h2 className='author'>
-          <img src={author.profilePicture} alt='Profile Picture' />
-          {author.username}
-          </h2>
-        <h3 className='review-title'>{title}</h3>
-      </div>
-      <div className='review-message'>
-        <p>{message}</p>
-      </div>
-
-      <button
-        onClick={() => nav(`/reviews/${_id}`)}
-        className='details-button'
-      >
-      See Details
-      </button>
-    </div>
-  )
-
   console.log(reviews);
-  return(
+  return (
     <>
-        {reviews.map((i) => {
-          return list(i)
-        })}
+      {reviews.map((i) => {
+        //return list(i)
+        return (
+          <ReviewInfo
+            key={i._id}
+            _id={i._id}
+            title={i.title}
+            message={i.message}
+            author={i.author}
+          ></ReviewInfo>
+        );
+      })}
     </>
-  )
+  );
 }

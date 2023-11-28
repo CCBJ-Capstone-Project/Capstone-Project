@@ -1,27 +1,19 @@
-import { useState, useEffect } from 'react';
-import { searchReviews } from '../api/reviewsUtils';
-import { searchUsers } from '../api/usersUtils';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SearchBar() {
+  const nav = useNavigate();
   const [query, setQuery] = useState('');
   const [searchType, setSearchType] = useState('reviews');
 
-  const handleSearch = async () => {
-    if (query) {
-      try {
-        let results = [];
-        if (searchType === 'reviews') {
-          results = await searchReviews(query);
-        } else if (searchType === 'users') {
-          results = await searchUsers(query);
-        }
-        // Add more conditions for other types (products, etc.)
-
-        console.log(results);
-        // Handle results accordingly
-      } catch (error) {
-        console.error('Error while searching:', error);
-        setSearchResults([]);
+  const doSearch = async () => {
+    if (query != '') {
+      if (searchType === 'users') {
+        nav('/usersearch?s=' + query);
+        nav(0);
+      } else if (searchType === 'reviews') {
+        nav('/reviewsearch?s=' + query);
+        nav(0);
       }
     }
   };
@@ -33,6 +25,11 @@ function SearchBar() {
         placeholder="Search here"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            doSearch();
+          }
+        }}
       />
       <select
         value={searchType}
@@ -40,10 +37,14 @@ function SearchBar() {
       >
         <option value="reviews">Reviews</option>
         <option value="users">Users</option>
-        {/* Add more options for other types */}
       </select>
-      <button onClick={handleSearch}>Search</button>
-      {/* Display search results */}
+      <button
+        onClick={() => {
+          doSearch();
+        }}
+      >
+        Search
+      </button>
     </div>
   );
 }
