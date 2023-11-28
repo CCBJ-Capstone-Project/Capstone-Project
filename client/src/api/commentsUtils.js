@@ -3,7 +3,7 @@ const LOCAL_URL = 'http://localhost:8080';
 
 export const fetchComments = async (id) => {
   try {
-    const response = await fetch(`${LOCAL_URL}/reviews/${id}/comments`);
+    const response = await fetch(`${BASE_URL}/reviews/${id}/comments`);
     const result = await response.json();
     console.log('Comments from fetchComments function: ', result);
     return result;
@@ -14,7 +14,7 @@ export const fetchComments = async (id) => {
 
 export const fetchSingleComment = async (reviewId, commentId) => {
   try {
-    const response = await fetch(`${LOCAL_URL}/reviews/${reviewId}/comments/${commentId}`);
+    const response = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/${commentId}`);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -25,7 +25,7 @@ export const fetchSingleComment = async (reviewId, commentId) => {
 export const createComment = async (reviewId, comment) => {
   try {
     console.log('Received comment: ', comment);
-    const response = await fetch(`${LOCAL_URL}/reviews/${reviewId}/comments`, {
+    const response = await fetch(`${BASE_URL}/reviews/${reviewId}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export const createComment = async (reviewId, comment) => {
 
 export const deleteComment = async (reviewId, commentId) => {
   try {
-    const response = await fetch(`${LOCAL_URL}/reviews/${reviewId}/comments/${commentId}`, {
+    const response = await fetch(`${BASE_URL}/reviews/${reviewId}/comments/${commentId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
