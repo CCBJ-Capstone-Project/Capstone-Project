@@ -8,7 +8,7 @@ const getRandomProfilePicture = () => {
 };
 
 export const showAllUsers = async () => {
-  const response = await fetch(`${LOCAL_URL}/users`);
+  const response = await fetch(`${BASE_URL}/users`);
   const result = await response.json();
 
   // console.log(result);
@@ -16,7 +16,7 @@ export const showAllUsers = async () => {
 };
 
 export const showSingleUser = async (id) => {
-  const response = await fetch(`${LOCAL_URL}/users/${id}`);
+  const response = await fetch(`${BASE_URL}/users/${id}`);
   const result = await response.json();
 
   // console.log(result);
@@ -26,7 +26,7 @@ export const showSingleUser = async (id) => {
 export const createUser = async (username, password) => {
   try {
     const profilePicture = getRandomProfilePicture();
-    const response = await fetch(`${LOCAL_URL}/users`, {
+    const response = await fetch(`${BASE_URL}/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const updateUser = async (id, username, password) => {
     }
 
     if (!username) {
-      const response = await fetch(`${LOCAL_URL}/users/${id}`, {
+      const response = await fetch(`${BASE_URL}/users/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const updateUser = async (id, username, password) => {
     }
 
     if (!password) {
-      const response = await fetch(`${LOCAL_URL}/users/${id}`, {
+      const response = await fetch(`${BASE_URL}/users/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export const updateUser = async (id, username, password) => {
       console.log('Result of PATCH request: ', result);
       return result;
     } else {
-      const response = await fetch(`${LOCAL_URL}/users/${id}`, {
+      const response = await fetch(`${BASE_URL}/users/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
