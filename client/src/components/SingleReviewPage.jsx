@@ -101,11 +101,15 @@ export default function SingleReview(){
                 </div>
               )
               ) : (
-                <p>Log in to create your own review!</p>
+                <p>Log in to add a comment!</p>
             )}
           </div>
           <>
-            <Comments comments={comments} />
+            {comments ? (
+              <Comments comments={comments} />
+            ) : (
+              <></>
+            )}
           </>
         </>
       ) : (

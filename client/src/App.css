@@ -34,6 +34,9 @@
 }
 
 h1{
-  color: #f6099d;
-  margin-top: 65px;
+  color: aqua;
+}
+
+button:hover{
+  border-color: aqua;
 }
