@@ -32,12 +32,10 @@ export const createReview = async (req, res) => {
   const review = req.body;
   const reviewId = new mongoose.Types.ObjectId();
   const author = req.body.author;
-  const authorId = req.body.author._id;
   const reviewWithIds = { ...review, reviewId, author };
   const newReview = new ReviewMessage(reviewWithIds);
   try {
     await newReview.save()
-    updatePostCount(authorId);
     res.send(newReview);
   } catch (error) {
     res.send(error.message);

@@ -12,6 +12,16 @@ export const fetchComments = async (id) => {
   }
 }
 
+export const fetchSingleComment = async (reviewId, commentId) => {
+  try {
+    const response = await fetch(`${LOCAL_URL}/reviews/${reviewId}/comments/${commentId}`);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.error('Error: ', error);
+  }
+}
+
 export const createComment = async (reviewId, comment) => {
   try {
     console.log('Received comment: ', comment);
@@ -20,7 +30,7 @@ export const createComment = async (reviewId, comment) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({comment})
+      body: JSON.stringify(comment)
     });
 
     console.log('Response Status: ', response.status);
@@ -47,6 +57,7 @@ export const deleteComment = async (reviewId, commentId) => {
       return { success: true };
     } else {
       const result = await response.json();
+      console.log('Result of Deletion: ', result);
       return result;
     }
   } catch (error) {

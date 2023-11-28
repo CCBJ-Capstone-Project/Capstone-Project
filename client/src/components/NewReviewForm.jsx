@@ -10,6 +10,11 @@ export default function NewReviewForm(){
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
   const { userId } = useParams();
+  let loggedUser;
+  if(sessionStorage.getItem('status')==='loggedIn'){
+      loggedUser = JSON.parse(sessionStorage.user);
+      // console.log('Logged User: ', loggedUser);
+  }
 
   async function getReviews(){
     const reviewsArr = await fetchReviews();
@@ -20,9 +25,7 @@ export default function NewReviewForm(){
     setUsers(usersArr);
   }
 
-  const user = users.find((user) =>{
-    return user._id == userId;
-  })
+  const user = loggedUser;
 
   const handleSubmit = async (event) => {
     event.preventDefault();

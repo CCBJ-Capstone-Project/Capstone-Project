@@ -1,13 +1,27 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { deleteComment } from "../api/commentsUtils";
 
 export default function Comments({ comments }){
+  const nav = useNavigate();
+  const { reviewId } = useParams();
+  let loggedUser;
+  if(sessionStorage.getItem('status')==='loggedIn'){
+      loggedUser = JSON.parse(sessionStorage.user);
+      // console.log('LoggedIn user info: ', loggedUser);
+  }
+  const user = loggedUser;
+
   const list = ({ _id, title, message, author }) => {
+    const goToPage = async () => {
+      nav(`/reviews/${reviewId}/comments/${_id}`);
+    }
     return (
       <div key={_id} className='comment-container'>
         <div className='review-header'>
-          <h2 className="author">
-            <img src={author.profilePicture} alt="Profile Picture" />
+        <h2 className='author'>
+          <img src={author.profilePicture} alt='Profile Picture' />
+          {author.username}
           </h2>
           <h3 className='review-title'>{title}</h3>
         </div>
@@ -15,10 +29,17 @@ export default function Comments({ comments }){
           <p>{message}</p>
         </div>
         <div>
-          <button
-            className="details-button">
+        {loggedUser ? (
+          user._id===author._id ? (
+            <button onClick={goToPage}>
               See Details
-          </button>
+            </button>
+          ) : (
+            <></>
+          )
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     )

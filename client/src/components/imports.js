@@ -10,6 +10,7 @@ import Register from './RegisterPage';
 import SingleUserPage from './SingleUserPage';
 import UpdateUserPage from './UpdateUser';
 import CommentForm from './CommentForm';
+import SingleComment from './SingleComment';
 
 export{
   Navbar,
@@ -23,5 +24,6 @@ export{
   SingleUserPage,
   UpdateUserPage,
   Register,
-  CommentForm
+  CommentForm,
+  SingleComment
 }

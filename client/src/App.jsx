@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { fetchReviews } from './api/reviewsUtils';
-import { Navbar, HomePage, LoginPage, Register, AllReviewsPage, SingleReview, AllUsersPage, SingleUserPage, UpdateReviewPage, UpdateUserPage, NewReviewForm, CommentForm } from './components/imports';
+import { Navbar, HomePage, LoginPage, Register, AllReviewsPage, SingleReview, AllUsersPage, SingleUserPage, UpdateReviewPage, UpdateUserPage, NewReviewForm, CommentForm, SingleComment } from './components/imports';
 import './App.css';
 import './login.css';
 import './reviews.css';
@@ -27,6 +27,7 @@ function App() {
         <Route path='/new-review-form/:userId' element={<NewReviewForm reviews={reviews} setReviews={setReviews} users={users}/>}/>
         <Route path='/reviews/search/:searchTerm' />
         <Route path='/comment-form/:reviewId' element={<CommentForm />}/>
+        <Route path='/reviews/:reviewId/comments/:commentId' element={<SingleComment />}/>
       </Routes>
     </>
   );

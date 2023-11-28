@@ -89,7 +89,7 @@ export default function SingleReview(){
               <p>{selectedReview.message}</p>
             </div>
             {loggedUser ? (
-              loggedUser.username===selectedReview.author.username && loggedUser.password===selectedReview.author.password ? (
+              loggedUser._id===selectedReview.author._id ? (
                 <div className="button-row">
                   <button onClick={removeReview}>Delete</button>
                   <button onClick={goToEditForm}>Update</button>

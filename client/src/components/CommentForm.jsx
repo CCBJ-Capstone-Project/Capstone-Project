@@ -15,6 +15,8 @@ export default function CommentForm(){
       loggedUser = JSON.parse(sessionStorage.user);
       // console.log('Logged User: ', loggedUser);
   }
+
+  const user = loggedUser;
   
   async function getReviews(){
     const reviewsArr = await fetchReviews();
@@ -24,8 +26,8 @@ export default function CommentForm(){
   const handleSubmit = async (e) =>{
     e.preventDefault();
     try {
-      console.log('Logged User: ', loggedUser);
-      const comment = {title: title, message: message, author: loggedUser}
+      console.log('Logged User: ', user);
+      const comment = {title: title, message: message, author: user}
       const result = await createComment(reviewId, comment);
       console.log("Comment Added: ", result);
       setTitle("");

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getReviewComments, createComment, deleteComment } from '../controllers/comments.js';
+import { getReviewComments, createComment, deleteComment, getSingleComment } from '../controllers/comments.js';
 
 const router = express.Router();
 
@@ -8,10 +8,13 @@ const router = express.Router();
 // GET /reviews/:reviewId/comments
 router.get('/:reviewId/comments', getReviewComments);
 
+// GET /reviews/:reviewId/comments
+router.get('/:reviewId/comments/:commentId', getSingleComment);
+
 // POST /reviews/:reviewId/comments
 router.post('/:reviewId/comments', createComment);
 
-// POST /reviews/:reviewId/comments
+// PATCH /reviews/:reviewId/comments
 router.delete('/:reviewId/comments/:commentId', deleteComment);
 
 export default router;
