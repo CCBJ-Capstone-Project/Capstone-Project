@@ -14,7 +14,7 @@ router.get('/:reviewId/comments/:commentId', getSingleComment);
 // POST /reviews/:reviewId/comments
 router.post('/:reviewId/comments', createComment);
 
-// PATCH /reviews/:reviewId/comments
+// DELETE /reviews/:reviewId/comments
 router.delete('/:reviewId/comments/:commentId', deleteComment);
 
 export default router;

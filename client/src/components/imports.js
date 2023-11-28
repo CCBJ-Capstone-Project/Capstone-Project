@@ -11,6 +11,13 @@ import SingleUserPage from './SingleUserPage';
 import UpdateUserPage from './UpdateUser';
 import CommentForm from './CommentForm';
 import SingleComment from './SingleComment';
+import UserInfo from './UserInfo';
+import ReviewInfo from './ReviewInfo';
+import SearchBar from './SearchBar';
+import UserSearch from './UserSearch';
+import ReviewSearch from './ReviewSearch';
+import Comments from './Comments';
+import Reviews from './Reviews';
 
 export{
   Navbar,
@@ -25,5 +32,12 @@ export{
   UpdateUserPage,
   Register,
   CommentForm,
-  SingleComment
+  SingleComment,
+  UserInfo,
+  ReviewInfo,
+  SearchBar,
+  UserSearch,
+  ReviewSearch,
+  Comments,
+  Reviews
 }
