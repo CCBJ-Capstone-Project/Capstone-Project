@@ -54,19 +54,19 @@ export const createReview = async (title, message, rating, author) => {
   }
 };
 
-export const updateReview = async (id, title, message) => {
+export const updateReview = async (id, title, message, rating) => {
   try {
     // If no new title or message, just return with no changes
-    if (!title && !message) {
+    if (!title && !message && !rating) {
       return;
     }
 
     // If no new title is present only update message
-    if (!title) {
+    if (!title && !rating) {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ message }),
       });
@@ -76,13 +76,69 @@ export const updateReview = async (id, title, message) => {
     }
 
     // If no new message is present only update title
-    if (!message) {
+    if (!message && !rating) {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ title }),
+      });
+      const result = await response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // If no new message is present only update title
+    if (!message && !title) {
+      const response = await fetch(`${BASE_URL}/reviews/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ rating }),
+      });
+      const result = await response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // If no new message is present only update title
+    if (!message) {
+      const response = await fetch(`${BASE_URL}/reviews/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, rating }),
+      });
+      const result = await response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // If no new message is present only update title
+    if (!title) {
+      const response = await fetch(`${BASE_URL}/reviews/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ message, rating }),
+      });
+      const result = await response.json();
+      console.log('Result of PATCH request: ', result);
+      return result;
+    }
+
+    // If no new message is present only update title
+    if (!rating) {
+      const response = await fetch(`${BASE_URL}/reviews/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ title, message }),
       });
       const result = await response.json();
       console.log('Result of PATCH request: ', result);
@@ -92,11 +148,11 @@ export const updateReview = async (id, title, message) => {
     // Otherwise update both title and message
     else {
       const response = await fetch(`${BASE_URL}/reviews/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ title, message }),
+        body: JSON.stringify({ title, message, rating }),
       });
       const result = await response.json();
       console.log('Result of PATCH request: ', result);

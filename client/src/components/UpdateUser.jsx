@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { updateUser } from "../api/usersUtils";
 
 export default function UpdateUserPage({users}){
     const { userId } = useParams();
     const [updatedUserName, setUpdatedUserName] = useState('');
     const [updatedPassword, setUpdatedPassword] = useState('');
+    const nav = useNavigate();
 
-    async function editUser(){
+    async function editUser(e){
+      e.preventDefault();
       try{
         const result = await updateUser(userId, updatedUserName, updatedPassword)
         console.log(`User with id: ${userId} has been updated!`);
+        sessionStorage.user = JSON.stringify(result);
         setUpdatedUserName('');
         setUpdatedPassword('');
+        nav(`/users/${userId}`);
         return result;
       }catch (error){
         console.error("Error updating user: ", error)

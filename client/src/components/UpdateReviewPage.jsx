@@ -7,14 +7,18 @@ export default function UpdateReviewPage({ reviews }){
   const { reviewId } = useParams();
   const [message, setMessage] = useState('');
   const [title, setTitle] = useState('');
+  const [rating, setRating] = useState(undefined);
 
-  // TODO: Navigate back to all reviews page after updating review
-  async function editReview(){
+  /// TODO: Navigate back to all reviews page after updating review
+  async function editReview(e){
+    e.preventDefault();
     try {
-      const result = await updateReview(reviewId, title, message);
+      const result = await updateReview(reviewId, title, message, rating);
       console.log(`Review with id: ${reviewId} has been updated!`);
       setMessage('');
       setTitle('');
+      setRating(undefined);
+      nav(`/reviews/${reviewId}`);
       return result;
     } catch (error) {
       console.error('Error updating review: ', error);
@@ -36,6 +40,12 @@ export default function UpdateReviewPage({ reviews }){
           Message: 
           <input type="text" value={message} onChange={(e) => {
             setMessage(e.target.value);
+          }}/>
+        </label>
+        <label>
+          Rating (1-10): 
+          <input type="number" value={rating} onChange={(e) => {
+            setRating(e.target.value);
           }}/>
         </label>
         <button onClick={editReview}>Update Review</button>

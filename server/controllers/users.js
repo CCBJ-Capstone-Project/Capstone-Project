@@ -66,7 +66,8 @@ export const updateUser = async (req, res) => {
       }
     });
 
-    res.send(`Updated Users: ${result.modifiedCount} ID: ${id}`);
+    const updatedUser = await UserInfo.findOne(query);
+    res.json(updatedUser);
   } catch (error) {
     res.send(error.message);
   }

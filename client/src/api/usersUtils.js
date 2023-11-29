@@ -51,9 +51,9 @@ export const updateUser = async (id, username, password) => {
 
     if (!username) {
       const response = await fetch(`${BASE_URL}/users/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ password }),
       });
@@ -64,9 +64,9 @@ export const updateUser = async (id, username, password) => {
 
     if (!password) {
       const response = await fetch(`${BASE_URL}/users/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username }),
       });
@@ -75,9 +75,9 @@ export const updateUser = async (id, username, password) => {
       return result;
     } else {
       const response = await fetch(`${BASE_URL}/users/${id}`, {
-        method: 'PATCH',
+        method: "PATCH",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ username, password }),
       });

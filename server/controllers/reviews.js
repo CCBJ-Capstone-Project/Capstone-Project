@@ -46,7 +46,7 @@ export const updateReview = async (req, res) => {
   try {
     const id = req.params.id;
     // Get variables that can be changed
-    const { title, message, tags } = req.body;
+    const { title, message, rating, tags } = req.body;
 
     const query = { _id: id };
 
@@ -54,11 +54,11 @@ export const updateReview = async (req, res) => {
       $set: {
         title: title,
         message: message,
+        rating: rating,
         tags: tags
       }
     });
-
-    res.send(`Updated Reviews: ${result.modifiedCount} ID: ${id}`);
+    res.json({ message: `Updated Reviews: ${result.modifiedCount} ID: ${id}` });
   } catch (error) {
     res.send(error.message);
   }
