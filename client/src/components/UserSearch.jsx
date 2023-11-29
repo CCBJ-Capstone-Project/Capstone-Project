@@ -11,7 +11,7 @@ export default function UserSearch() {
   useEffect(() => {
     const users = showAllUsers();
     users.then((val) => {
-      console.log(val);
+      // console.log(val);
       let newUsers = [];
       for (let i in val) {
         let user = val[i];

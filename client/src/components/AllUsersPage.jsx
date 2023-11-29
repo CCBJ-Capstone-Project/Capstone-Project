@@ -22,7 +22,7 @@ export default function AllUsersPage({ users, setUsers }) {
     </div>
   );*/
 
-  console.log(users);
+  // console.log(users);
   /*return (
     <>
       <h1>All Users Page</h1>

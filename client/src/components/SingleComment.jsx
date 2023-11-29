@@ -26,7 +26,7 @@ export default function SingleComment(){
     if (selectedComment) {
       try {
         const result = await fetchSingleComment(reviewId, commentId);
-        console.log('Selected review info: ', result);
+        // console.log('Selected review info: ', result);
       } catch (error) {
         console.error(error);
       }
@@ -57,12 +57,12 @@ export default function SingleComment(){
   useEffect(() => {
     console.log('Review ID from URL:', reviewId);
     console.log('Comment ID from URL:', commentId);
-    console.log('Reviews:', reviews);
-    console.log('Comments from SingleReview.jsx: ', comments);
+    // console.log('Reviews:', reviews);
+    // console.log('Comments from SingleReview.jsx: ', comments);
     // Use the reviews prop to find the selected review
     const comment = comments.find((comment) => comment._id === commentId);
     setSelectedComment(comment);
-    console.log('Selected Comment: ', comment);
+    // console.log('Selected Comment: ', comment);
   }, [reviewId, commentId, comments]);
   
   return(

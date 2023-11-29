@@ -11,7 +11,7 @@ export default function ReviewSearch() {
   useEffect(() => {
     const reviews = fetchReviews();
     reviews.then((val) => {
-      console.log(val);
+      // console.log(val);
       let newReviews = [];
       for (let i in val) {
         let review = val[i];

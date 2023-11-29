@@ -25,7 +25,7 @@ export default function SingleReview(){
     if (selectedReview) {
       try {
         const result = await fetchSingleReview(selectedReview._id);
-        console.log('Selected review info: ', result);
+        // console.log('Selected review info: ', result);
       } catch (error) {
         console.error(error);
       }
@@ -64,12 +64,12 @@ export default function SingleReview(){
   
   useEffect(() => {
     console.log('Review ID from URL:', reviewId);
-    console.log('Reviews:', reviews);
-    console.log('Comments from SingleReview.jsx: ', comments);
+    // console.log('Reviews:', reviews);
+    // console.log('Comments from SingleReview.jsx: ', comments);
     // Use the reviews prop to find the selected review
     const review = reviews.find((review) => review._id === reviewId);
     setSelectedReview(review);
-    console.log('Selected Review: ', review);
+    // console.log('Selected Review: ', review);
   }, [reviewId, reviews]);
   
   return(

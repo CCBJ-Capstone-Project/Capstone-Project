@@ -13,7 +13,7 @@ export default function AllReviewsPage(){
     displayReviews();
   }, [])
 
-  console.log(reviews);
+  // console.log(reviews);
   return(
     <>
       {/* <h1>All Reviews Page</h1> */}

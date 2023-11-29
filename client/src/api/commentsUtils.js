@@ -5,7 +5,7 @@ export const fetchComments = async (id) => {
   try {
     const response = await fetch(`${BASE_URL}/reviews/${id}/comments`);
     const result = await response.json();
-    console.log('Comments from fetchComments function: ', result);
+    // console.log('Comments from fetchComments function: ', result);
     return result;
   } catch (error) {
     console.error('Error getting comments: ', error);

@@ -26,12 +26,12 @@ export default function SingleUserPage(){
       const reviewsArr = await fetchReviews();
       filterUsersPosts(reviewsArr);
       setReviews(reviewsArr);
-      console.log(reviewsArr);
+      // console.log(reviewsArr);
    }
 
    function filterUsersPosts(reviews){
       const filteredPost = reviews.filter((review) => review.author._id === userId);
-      console.log(filteredPost, "here should be the filtered review");
+      // console.log(filteredPost, "here should be the filtered review");
       setUserReviews(filteredPost);
    }
 
@@ -39,7 +39,7 @@ export default function SingleUserPage(){
       if(selectedUser){
          try {
             const result = await showSingleUser(selectedUser._id);
-            console.log('Selected User: ', result);
+            // console.log('Selected User: ', result);
          } catch (error) {
             console.error(error);
          }
@@ -60,7 +60,7 @@ export default function SingleUserPage(){
       console.log('User ID from URL: ', userId);
       const user = users.find((user) => user._id === userId);
       setSelectedUser(user);
-      console.log('Selected User: ', user);
+      // console.log('Selected User: ', user);
    }, [userId, users]);
    
    useEffect(() => {

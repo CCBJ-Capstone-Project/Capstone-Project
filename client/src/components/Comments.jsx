@@ -45,7 +45,7 @@ export default function Comments({ comments }){
     )
   }
 
-  console.log('Comments from Comments.jsx: ', comments);
+  // console.log('Comments from Comments.jsx: ', comments);
   return(
     <div className="comment-feed">
       {comments.map((i) => {

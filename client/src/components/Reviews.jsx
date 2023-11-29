@@ -4,7 +4,7 @@ import ReviewInfo from './ReviewInfo';
 export default function Reviews({ reviews }) {
   const nav = useNavigate();
 
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <>
       {reviews.map((i) => {
