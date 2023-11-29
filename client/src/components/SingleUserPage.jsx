@@ -73,9 +73,9 @@ export default function SingleUserPage(){
       <>
          <div>
             {selectedUser ? (
-               <>
+               <div className="single-user-page">
                   <h1>{selectedUser.username}</h1>
-                  <div style={{
+                  <div className="single-user-feed" style={{
                      display: 'grid',
                      gridTemplateColumns: '1fr',
                      rowGap: '35px'
@@ -102,7 +102,7 @@ export default function SingleUserPage(){
                   ) : (
                      <p>Please log in to perform actions.</p>
                   )}
-               </>
+               </div>
             ) : (
                <p>User Not Found</p>
             )}

@@ -42,6 +42,7 @@ function SearchBar() {
         onClick={() => {
           doSearch();
         }}
+        className='search-button'
       >
         Search
       </button>

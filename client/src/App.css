@@ -5,11 +5,10 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding-bottom: 100px;
 }
 
 .navbar{
-  background-color: rgb(100% 100% 100% / 0.7);     /* Glassy Effect on navbar */
+  background-color: rgb(100% 100% 100% / 0.55);     /* Glassy Effect on navbar */
   backdrop-filter: blur(30px);
   display: flex;
   flex-direction: row;
@@ -19,10 +18,10 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 55px;
+  height: 75px;
   z-index: 5;
 }
-.navbar > img{
+.profPicture > img{
   position: inherit;
   right: 10px;
   height: 50px;
@@ -31,6 +30,15 @@
   &:hover{
     cursor: pointer;
   }
+}
+.nav-links{
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-content: space-evenly;
+}
+.search-button{
+  font-size: 0.75rem;
 }
 
 h1{
@@ -41,9 +49,13 @@ button:hover{
   border-color: aqua;
 }
 
-.users-buttons{
-  display: flexbox;
-  width: 500px;
-  flex-direction: row;
-  justify-content: space-evenly;
+@media screen and (max-width: 450px){
+  
+  .navbar{
+    flex-direction: column;
+    height: fit-content;
+  }
+  form{
+    width: 370px;
+  }
 }

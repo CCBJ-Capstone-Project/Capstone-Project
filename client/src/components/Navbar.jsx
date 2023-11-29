@@ -16,12 +16,18 @@ export default function Navbar() {
 
   return (
     <div className="navbar">
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/users">Users</Link>
-      <Link to="/reviews">Reviews</Link>
-      <SearchBar />
-      <img src={loggedUser?.profilePicture} onClick={goToProfile}/>
+      <div className='nav-links'>
+        <Link to="/">Home</Link>
+        <Link to="/login">Login</Link>
+        <Link to="/users">Users</Link>
+        <Link to="/reviews">Reviews</Link>
+      </div>
+      <div>
+        <SearchBar />
+      </div>
+      <div className='profPicture'>
+        <img src={loggedUser?.profilePicture} onClick={goToProfile}/>
+      </div>
     </div>
   );
 }

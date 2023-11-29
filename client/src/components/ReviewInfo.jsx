@@ -10,7 +10,7 @@ export default function ReviewInfo({ _id, title, message, rating, author }) {
           {author.username}
         </h2>
         <h3 className="review-title">{title}</h3>
-        <h3 className='review-rating'>Rating: {rating}</h3>
+        <h3 className='review-rating'>Rating: {rating} / 10</h3>
       </div>
       <div className="review-message">
         <p>{message}</p>

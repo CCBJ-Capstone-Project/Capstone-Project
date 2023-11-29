@@ -23,7 +23,7 @@ export default function Comments({ comments }){
           <img src={author.profilePicture} alt='Profile Picture' />
           {author.username}
           </h2>
-          <h3 className='review-title'>{title}</h3>
+          <h3 className='comment-title'>{title}</h3>
         </div>
         <div className='review-message'>
           <p>{message}</p>

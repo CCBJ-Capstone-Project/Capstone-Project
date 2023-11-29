@@ -19,6 +19,7 @@
 
 .selected-review-container{
   /* background-color: lightblue;      For seeing individual div purposes */
+  background-color: rgb(26, 26, 26);
   padding: 10px;
   width: auto;
   border: 2px solid aqua;
@@ -104,23 +105,37 @@
   gap: 50px;
 }
 
+.users-buttons{
+  display: flexbox;
+  flex-direction: row;
+}
+
 .comment-feed{
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  justify-content: center;
 }
 
 .comment-container{
   background-color: rgb(26, 26, 26);
   display: flexbox;
   flex-direction: column;
-  padding: 10px 10px;
-  width: 95%;
+  /* padding: 10px 10px; */
   height: 400px;
   border: 2px solid aqua;
   border-radius: 20px;
+  padding: 10px 10px;
   margin-top: 25px;
+  width: auto;
+}
+.comment-title{
+  /* background-color: lightskyblue;      For seeing individual div purposes */
+  margin-top: 5px;
+  margin-bottom: 0;
+  line-height: 2;
+  border-bottom: 2px solid aqua;
+  padding-bottom: 5px;
 }
 
 @media screen and (max-width: 1360px){
@@ -137,7 +152,41 @@
   .feed{
     grid-template-columns: 1fr;
   }
-  .review-container{
+  .feed > .review-container{
     width: 450px;
+  }
+}
+@media screen and (max-width: 485px){
+  .feed{
+    width: 375px;
+    margin-top: 45px;
+  }
+  .feed > .review-container{
+    width: 350px;
+  }
+  .review-container{
+    width: 340px;
+  }
+  .users-buttons{
+    flex-direction: column;
+  }
+  .single-users-feed{
+    width: 375px;
+  }
+  .comment-feed{
+    width: 375px;
+  }
+  .comment-feed > .comment-container{
+    width: 365px;
+  }
+  .selected-review-container{
+    width: 346px;
+    margin-top: 45px;
+  }
+  .button-row{
+    flex-direction: column;
+  }
+  .form-row{
+    flex-direction: column;
   }
 }
